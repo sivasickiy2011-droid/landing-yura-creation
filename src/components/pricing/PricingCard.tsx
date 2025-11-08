@@ -9,6 +9,8 @@ interface PricingCardProps {
     nameSmall?: string;
     priceMonth: string;
     priceYear: string;
+    marketplaceMonth: string;
+    marketplaceYear: string;
     description: string;
     iconUrl: string;
     features: string[];
@@ -94,7 +96,7 @@ const PricingCard = ({
 
         <Button
           onClick={() => onSelectTariff(plan.name)}
-          className={`w-full py-4 rounded-2xl font-semibold mb-8 text-sm uppercase tracking-wide ${
+          className={`w-full py-4 rounded-2xl font-semibold mb-6 text-sm uppercase tracking-wide ${
             plan.popular
               ? "bg-blue-100 hover:bg-blue-200 text-gray-800"
               : "bg-blue-50 hover:bg-blue-100 text-gray-800"
@@ -102,6 +104,23 @@ const PricingCard = ({
         >
           Выбрать тариф
         </Button>
+
+        {!plan.isFree && (
+          <div className="mb-8 p-4 bg-gradient-to-r from-purple-50 to-blue-50 border border-purple-200 rounded-xl">
+            <div className="flex items-center gap-2 mb-2">
+              <Icon name="ShoppingBag" size={16} className="text-purple-600" />
+              <span className="text-xs font-semibold text-purple-700 uppercase tracking-wide">
+                + Маркетплейс
+              </span>
+            </div>
+            <div className="flex items-baseline gap-1">
+              <span className="text-2xl font-bold text-gray-900">
+                ₽{billingPeriod === "month" ? plan.marketplaceMonth : plan.marketplaceYear}
+              </span>
+              <span className="text-xs text-gray-500">/мес</span>
+            </div>
+          </div>
+        )}
 
         <ul className="space-y-4 hidden md:block">
           {displayedFeaturesDesktop.map((feature, i) => (

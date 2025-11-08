@@ -80,24 +80,29 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
 def parse_tariffs(soup: BeautifulSoup) -> List[Dict[str, Any]]:
     tariffs = []
     
-    tariff_names = ['Бесплатный', 'Базовый', 'Стандартный', 'Профессиональный']
+    tariff_configs = [
+        {'name': 'Бесплатный', 'marketplaceMonth': '0', 'marketplaceYear': '0'},
+        {'name': 'Базовый', 'marketplaceMonth': '1990', 'marketplaceYear': '1590'},
+        {'name': 'Стандартный', 'marketplaceMonth': '2490', 'marketplaceYear': '1990'},
+        {'name': 'Профессиональный', 'marketplaceMonth': '2990', 'marketplaceYear': '2490'}
+    ]
     
-    for name in tariff_names:
+    for config in tariff_configs:
         tariff_data = {
-            'name': name,
-            'priceMonth': '0' if name == 'Бесплатный' else extract_price(soup, name, 'month'),
-            'priceYear': '0' if name == 'Бесплатный' else extract_price(soup, name, 'year')
+            'name': config['name'],
+            'priceMonth': '0' if config['name'] == 'Бесплатный' else extract_price(soup, config['name'], 'month'),
+            'priceYear': '0' if config['name'] == 'Бесплатный' else extract_price(soup, config['name'], 'year'),
+            'marketplaceMonth': extract_marketplace_price(soup, config['name'], 'month', config['marketplaceMonth']),
+            'marketplaceYear': extract_marketplace_price(soup, config['name'], 'year', config['marketplaceYear'])
         }
         tariffs.append(tariff_data)
     
     return tariffs
 
-def parse_marketplace(soup: BeautifulSoup) -> Dict[str, str]:
-    marketplace = {
-        'priceMonth': extract_marketplace_price(soup, 'month'),
-        'priceYear': extract_marketplace_price(soup, 'year')
+def parse_marketplace(soup: BeautifulSoup) -> Dict[str, Any]:
+    return {
+        'note': 'Цены зависят от тарифа, см. tariffs[].marketplaceMonth/Year'
     }
-    return marketplace
 
 def extract_price(soup: BeautifulSoup, tariff: str, period: str) -> str:
     try:
@@ -116,9 +121,9 @@ def extract_price(soup: BeautifulSoup, tariff: str, period: str) -> str:
     except:
         return get_default_price(tariff, period)
 
-def extract_marketplace_price(soup: BeautifulSoup, period: str) -> str:
+def extract_marketplace_price(soup: BeautifulSoup, tariff: str, period: str, default: str) -> str:
     try:
-        marketplace_section = soup.find(text=lambda t: t and 'Маркетплейс' in t)
+        marketplace_section = soup.find(text=lambda t: t and 'Маркетплейс' in t and tariff in str(t.find_parent()))
         if marketplace_section:
             parent = marketplace_section.find_parent()
             if parent:
@@ -128,9 +133,9 @@ def extract_marketplace_price(soup: BeautifulSoup, period: str) -> str:
                     price = ''.join(filter(str.isdigit, text))
                     if price:
                         return price
-        return '2990' if period == 'month' else '2490'
+        return default
     except:
-        return '2990' if period == 'month' else '2490'
+        return default
 
 def get_default_price(tariff: str, period: str) -> str:
     defaults = {
@@ -144,13 +149,12 @@ def get_default_price(tariff: str, period: str) -> str:
 def get_fallback_prices() -> Dict[str, Any]:
     return {
         'tariffs': [
-            {'name': 'Бесплатный', 'priceMonth': '0', 'priceYear': '0'},
-            {'name': 'Базовый', 'priceMonth': '2490', 'priceYear': '1990'},
-            {'name': 'Стандартный', 'priceMonth': '6990', 'priceYear': '5990'},
-            {'name': 'Профессиональный', 'priceMonth': '13990', 'priceYear': '11990'}
+            {'name': 'Бесплатный', 'priceMonth': '0', 'priceYear': '0', 'marketplaceMonth': '0', 'marketplaceYear': '0'},
+            {'name': 'Базовый', 'priceMonth': '2490', 'priceYear': '1990', 'marketplaceMonth': '1990', 'marketplaceYear': '1590'},
+            {'name': 'Стандартный', 'priceMonth': '6990', 'priceYear': '5990', 'marketplaceMonth': '2490', 'marketplaceYear': '1990'},
+            {'name': 'Профессиональный', 'priceMonth': '13990', 'priceYear': '11990', 'marketplaceMonth': '2990', 'marketplaceYear': '2490'}
         ],
         'marketplace': {
-            'priceMonth': '2990',
-            'priceYear': '2490'
+            'note': 'Цены зависят от тарифа'
         }
     }
