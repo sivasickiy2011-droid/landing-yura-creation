@@ -333,57 +333,85 @@ const NewsSection = () => {
                   } ${index === 0 ? "md:col-span-2 md:row-span-2" : ""}`}
                   onClick={() => handleNewsClick(item)}
                 >
-                  <div className={`relative overflow-hidden ${index === 0 ? "h-96" : "h-48"} bg-gradient-to-br from-blue-50 to-purple-50`}>
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none" />
-                    {item.category && (
-                      <Badge className="absolute top-4 left-4 bg-blue-600 hover:bg-blue-700 shadow-lg">
-                        {item.category}
-                      </Badge>
-                    )}
-                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                      <div className="flex items-center gap-2 text-xs mb-2 opacity-90">
-                        <Icon name="Calendar" size={14} />
-                        <span>{formatDate(item.pubDate)}</span>
+                  {index === 0 ? (
+                    <div className="h-full flex flex-col">
+                      <div className="relative overflow-hidden h-64 bg-gradient-to-br from-blue-50 to-purple-50">
+                        <img
+                          src={item.image}
+                          alt={item.title}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent pointer-events-none" />
+                        {item.category && (
+                          <Badge className="absolute top-4 left-4 bg-blue-600 hover:bg-blue-700 shadow-lg">
+                            {item.category}
+                          </Badge>
+                        )}
                       </div>
-                      <h3 className={`font-bold mb-2 line-clamp-2 ${index === 0 ? "text-2xl" : "text-lg"}`}>
-                        {item.title}
-                      </h3>
-                      {index === 0 && (
-                        <p className="text-sm opacity-90 line-clamp-2">
+                      
+                      <CardContent className="p-8 flex-1 flex flex-col justify-between">
+                        <div>
+                          <div className="flex items-center gap-2 text-xs text-gray-500 mb-3">
+                            <Icon name="Calendar" size={14} />
+                            <span>{formatDate(item.pubDate)}</span>
+                          </div>
+                          <h3 className="font-bold text-2xl mb-4 leading-tight text-gray-900">
+                            {item.title}
+                          </h3>
+                          <p className="text-base text-gray-600 leading-relaxed mb-6 line-clamp-4">
+                            {item.description}
+                          </p>
+                        </div>
+                        
+                        <div className="flex items-center text-blue-600 font-semibold group-hover:gap-2 transition-all">
+                          <span>Читать полностью</span>
+                          <Icon 
+                            name="ArrowRight" 
+                            size={18} 
+                            className="group-hover:translate-x-1 transition-transform" 
+                          />
+                        </div>
+                      </CardContent>
+                    </div>
+                  ) : (
+                    <>
+                      <div className="relative overflow-hidden h-48 bg-gradient-to-br from-blue-50 to-purple-50">
+                        <img
+                          src={item.image}
+                          alt={item.title}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none" />
+                        {item.category && (
+                          <Badge className="absolute top-4 left-4 bg-blue-600 hover:bg-blue-700 shadow-lg">
+                            {item.category}
+                          </Badge>
+                        )}
+                        <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                          <div className="flex items-center gap-2 text-xs mb-2 opacity-90">
+                            <Icon name="Calendar" size={14} />
+                            <span>{formatDate(item.pubDate)}</span>
+                          </div>
+                          <h3 className="font-bold text-lg mb-2 line-clamp-2">
+                            {item.title}
+                          </h3>
+                        </div>
+                      </div>
+                      
+                      <CardContent className="p-6">
+                        <p className="text-sm text-gray-600 line-clamp-3 leading-relaxed mb-4">
                           {item.description}
                         </p>
-                      )}
-                    </div>
-                  </div>
-                  
-                  {index !== 0 && (
-                    <CardContent className="p-6">
-                      <p className="text-sm text-gray-600 line-clamp-3 leading-relaxed mb-4">
-                        {item.description}
-                      </p>
-                      <div className="flex items-center text-blue-600 font-semibold text-sm group-hover:gap-2 transition-all">
-                        <span>Читать далее</span>
-                        <Icon 
-                          name="ArrowRight" 
-                          size={16} 
-                          className="group-hover:translate-x-1 transition-transform" 
-                        />
-                      </div>
-                    </CardContent>
-                  )}
-                  
-                  {index === 0 && (
-                    <div className="absolute bottom-6 right-6">
-                      <div className="bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 flex items-center gap-2 text-white text-sm font-semibold">
-                        <span>Читать</span>
-                        <Icon name="ArrowRight" size={16} />
-                      </div>
-                    </div>
+                        <div className="flex items-center text-blue-600 font-semibold text-sm group-hover:gap-2 transition-all">
+                          <span>Читать далее</span>
+                          <Icon 
+                            name="ArrowRight" 
+                            size={16} 
+                            className="group-hover:translate-x-1 transition-transform" 
+                          />
+                        </div>
+                      </CardContent>
+                    </>
                   )}
                 </Card>
               ))}
