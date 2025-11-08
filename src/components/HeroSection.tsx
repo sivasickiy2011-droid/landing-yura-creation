@@ -38,6 +38,68 @@ const HeroSection = ({ scrollToSection }: HeroSectionProps) => {
         <div className="absolute -bottom-8 left-20 w-72 h-72 bg-pink-400 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000"></div>
       </div>
 
+      <div className="absolute inset-0 z-0 opacity-10 pointer-events-none hidden md:block">
+        <div className="absolute top-32 left-[5%] bg-white p-3 rounded-2xl shadow-lg animate-float">
+          <Icon name="Facebook" size={32} className="text-blue-600" />
+        </div>
+        <div className="absolute top-48 right-[8%] bg-white p-3 rounded-2xl shadow-lg animate-float animation-delay-1000">
+          <Icon name="Instagram" size={32} className="text-pink-600" />
+        </div>
+        <div className="absolute top-[60%] left-[10%] bg-white p-3 rounded-2xl shadow-lg animate-float animation-delay-2000">
+          <Icon name="MessageCircle" size={32} className="text-green-600" />
+        </div>
+        <div className="absolute top-[35%] right-[15%] bg-white p-3 rounded-2xl shadow-lg animate-float animation-delay-3000">
+          <Icon name="Mail" size={32} className="text-red-600" />
+        </div>
+        <div className="absolute bottom-32 left-[15%] bg-white p-3 rounded-2xl shadow-lg animate-float animation-delay-4000">
+          <Icon name="BarChart3" size={32} className="text-purple-600" />
+        </div>
+        <div className="absolute top-[45%] left-[8%] bg-white p-3 rounded-2xl shadow-lg animate-float animation-delay-1500">
+          <Icon name="TrendingUp" size={32} className="text-green-600" />
+        </div>
+        <div className="absolute bottom-40 right-[12%] bg-white p-3 rounded-2xl shadow-lg animate-float animation-delay-2500">
+          <Icon name="LineChart" size={32} className="text-blue-600" />
+        </div>
+        <div className="absolute top-[55%] right-[5%] bg-white p-3 rounded-2xl shadow-lg animate-float animation-delay-3500">
+          <Icon name="Phone" size={32} className="text-orange-600" />
+        </div>
+        <div className="absolute top-[25%] left-[20%] bg-white p-3 rounded-2xl shadow-lg animate-float animation-delay-500">
+          <Icon name="Youtube" size={32} className="text-red-600" />
+        </div>
+        <div className="absolute bottom-[25%] right-[20%] bg-white p-3 rounded-2xl shadow-lg animate-float animation-delay-4500">
+          <Icon name="Linkedin" size={32} className="text-blue-700" />
+        </div>
+        <div className="absolute top-[70%] right-[25%] bg-white p-3 rounded-2xl shadow-lg animate-float animation-delay-2000">
+          <Icon name="Send" size={32} className="text-blue-500" />
+        </div>
+        <div className="absolute bottom-[35%] left-[25%] bg-white p-3 rounded-2xl shadow-lg animate-float animation-delay-3000">
+          <Icon name="Twitter" size={32} className="text-sky-500" />
+        </div>
+        <div className="absolute top-[20%] right-[5%] bg-white p-3 rounded-2xl shadow-lg animate-float animation-delay-1000">
+          <Icon name="PieChart" size={32} className="text-orange-600" />
+        </div>
+        <div className="absolute bottom-[15%] left-[8%] bg-white p-3 rounded-2xl shadow-lg animate-float animation-delay-4000">
+          <Icon name="Calendar" size={32} className="text-indigo-600" />
+        </div>
+        <div className="absolute top-[38%] left-[3%] bg-white p-3 rounded-2xl shadow-lg animate-float animation-delay-2500">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="32" height="32" rx="6" fill="#FF6B00"/>
+            <text x="16" y="22" fontSize="18" fontWeight="bold" fill="white" textAnchor="middle" fontFamily="Arial">1C</text>
+          </svg>
+        </div>
+        <div className="absolute bottom-[45%] right-[8%] bg-gradient-to-br from-blue-600 to-blue-700 p-3 rounded-2xl shadow-lg animate-float animation-delay-3500">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="10" cy="10" r="4" fill="white"/>
+            <circle cx="22" cy="10" r="4" fill="white"/>
+            <circle cx="16" cy="22" r="4" fill="white"/>
+            <path d="M10 10 L22 10 L16 22 Z" stroke="white" strokeWidth="2" fill="none"/>
+          </svg>
+        </div>
+        <div className="absolute top-[68%] left-[5%] bg-white p-3 rounded-2xl shadow-lg animate-float animation-delay-500">
+          <Icon name="Gauge" size={32} className="text-yellow-600" />
+        </div>
+      </div>
+
       <div className="max-w-[1460px] mx-auto relative z-10 w-full">
         <div className="text-center mb-6 md:mb-8 animate-fade-in">
           <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full font-semibold text-xs md:text-sm mb-4">

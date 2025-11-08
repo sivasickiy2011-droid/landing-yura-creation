@@ -156,17 +156,45 @@
   @keyframes float {
     0%,
     100% {
-      transform: translate(-50%, 0) rotate(0deg);
+      transform: translateY(0) rotate(0deg);
     }
     25% {
-      transform: translate(-50%, -3px) rotate(0.5deg);
+      transform: translateY(-10px) rotate(2deg);
     }
     50% {
-      transform: translate(-50%, -5px) rotate(-0.5deg);
+      transform: translateY(-20px) rotate(-2deg);
     }
     75% {
-      transform: translate(-50%, -3px) rotate(0.5deg);
+      transform: translateY(-10px) rotate(2deg);
     }
+  }
+
+  .animation-delay-500 {
+    animation-delay: 0.5s;
+  }
+
+  .animation-delay-1000 {
+    animation-delay: 1s;
+  }
+
+  .animation-delay-1500 {
+    animation-delay: 1.5s;
+  }
+
+  .animation-delay-2500 {
+    animation-delay: 2.5s;
+  }
+
+  .animation-delay-3000 {
+    animation-delay: 3s;
+  }
+
+  .animation-delay-3500 {
+    animation-delay: 3.5s;
+  }
+
+  .animation-delay-4500 {
+    animation-delay: 4.5s;
   }
 
   .hide-scrollbar {
