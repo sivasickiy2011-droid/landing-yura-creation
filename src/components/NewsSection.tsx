@@ -64,7 +64,7 @@ const NewsSection = () => {
         <p>Компании, внедрившие AI-инструменты в CRM, отмечают рост конверсии на 25-40% и сокращение времени на рутину на 60%.</p>
       `,
       link: "https://www.bitrix24.ru/",
-      pubDate: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString(),
+      pubDate: new Date(2025, 10, 7).toISOString(),
       image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80",
       category: "Технологии"
     },
@@ -73,7 +73,7 @@ const NewsSection = () => {
       description: "Клиенты пишут в WhatsApp, звонят, заполняют формы на сайте. Как не потерять ни одного обращения и выстроить единую коммуникацию.",
       fullContent: `
         <h2>Единое пространство коммуникаций</h2>
-        <p>В 2024 году клиенты ожидают мгновенных ответов в любом удобном канале. Telegram, WhatsApp, email, звонки — всё должно работать как единый механизм.</p>
+        <p>В 2025 году клиенты ожидают мгновенных ответов в любом удобном канале. Telegram, WhatsApp, email, звонки — всё должно работать как единый механизм.</p>
         
         <h3>Преимущества омниканального подхода:</h3>
         <ul>
@@ -88,7 +88,7 @@ const NewsSection = () => {
         </blockquote>
       `,
       link: "https://www.bitrix24.ru/",
-      pubDate: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString(),
+      pubDate: new Date(2025, 10, 5).toISOString(),
       image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&q=80",
       category: "Продажи"
     },
@@ -111,7 +111,7 @@ const NewsSection = () => {
         <p>В среднем компания экономит 15-20 часов в неделю на рутинных операциях после настройки автоматизации.</p>
       `,
       link: "https://www.bitrix24.ru/",
-      pubDate: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
+      pubDate: new Date(2025, 10, 3).toISOString(),
       image: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80",
       category: "Автоматизация"
     },
@@ -134,7 +134,7 @@ const NewsSection = () => {
         <p>Правильные инструменты позволяют распределённой команде работать даже эффективнее офисной.</p>
       `,
       link: "https://www.bitrix24.ru/",
-      pubDate: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(),
+      pubDate: new Date(2025, 10, 1).toISOString(),
       image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80",
       category: "Управление"
     },
@@ -156,7 +156,7 @@ const NewsSection = () => {
         <p>Компании, использующие аналитику, увеличивают выручку на 20-30% без роста бюджета на маркетинг.</p>
       `,
       link: "https://www.bitrix24.ru/",
-      pubDate: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString(),
+      pubDate: new Date(2025, 9, 29).toISOString(),
       image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
       category: "Аналитика"
     },
@@ -179,7 +179,7 @@ const NewsSection = () => {
         <p>Современные облачные платформы обеспечивают уровень защиты, недоступный для локальных решений.</p>
       `,
       link: "https://www.bitrix24.ru/",
-      pubDate: new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString(),
+      pubDate: new Date(2025, 9, 25).toISOString(),
       image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&q=80",
       category: "Безопасность"
     },
@@ -202,7 +202,7 @@ const NewsSection = () => {
         <p>Правильная интеграция экономит 10-15 часов в неделю на ручном переносе данных и исключает ошибки.</p>
       `,
       link: "https://www.bitrix24.ru/",
-      pubDate: new Date(Date.now() - 18 * 24 * 60 * 60 * 1000).toISOString(),
+      pubDate: new Date(2025, 9, 21).toISOString(),
       image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80",
       category: "Интеграции"
     }
@@ -236,6 +236,19 @@ const NewsSection = () => {
     ? news 
     : news.filter(item => item.category === activeCategory);
 
+  const getCategoryIcon = (category?: string) => {
+    switch (category) {
+      case "Технологии": return "Cpu";
+      case "Продажи": return "TrendingUp";
+      case "Автоматизация": return "Zap";
+      case "Управление": return "Users";
+      case "Аналитика": return "BarChart3";
+      case "Безопасность": return "Shield";
+      case "Интеграции": return "Network";
+      default: return "FileText";
+    }
+  };
+
   return (
     <>
       <section
@@ -264,19 +277,31 @@ const NewsSection = () => {
               isVisible ? "animate-scroll-in-delay-1" : "opacity-0"
             }`}
           >
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setActiveCategory(category)}
-                className={`px-6 py-2.5 rounded-full font-medium transition-all duration-300 ${
-                  activeCategory === category
-                    ? "bg-blue-600 text-white shadow-lg scale-105"
-                    : "bg-white text-gray-700 hover:bg-gray-100 border border-gray-200 hover:border-blue-300"
-                }`}
-              >
-                {category}
-              </button>
-            ))}
+            {categories.map((category) => {
+              const count = category === "Все" 
+                ? news.length 
+                : news.filter(item => item.category === category).length;
+              return (
+                <button
+                  key={category}
+                  onClick={() => setActiveCategory(category)}
+                  className={`px-6 py-2.5 rounded-full font-medium transition-all duration-300 flex items-center gap-2 ${
+                    activeCategory === category
+                      ? "bg-blue-600 text-white shadow-lg scale-105"
+                      : "bg-white text-gray-700 hover:bg-gray-100 border border-gray-200 hover:border-blue-300"
+                  }`}
+                >
+                  {category}
+                  <span className={`text-xs px-2 py-0.5 rounded-full ${
+                    activeCategory === category
+                      ? "bg-white/20"
+                      : "bg-gray-200"
+                  }`}>
+                    {count}
+                  </span>
+                </button>
+              );
+            })}
           </div>
 
           {loading ? (
@@ -309,8 +334,11 @@ const NewsSection = () => {
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
                       </>
                     ) : (
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <Icon name="Image" size={48} className="text-gray-400" />
+                      <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
+                        <div className="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+                          <Icon name={getCategoryIcon(item.category) as any} size={40} className="text-white" />
+                        </div>
+                        <span className="text-white font-medium text-lg">{item.category}</span>
                       </div>
                     )}
                     {item.category && (
