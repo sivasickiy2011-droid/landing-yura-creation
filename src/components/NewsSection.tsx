@@ -289,11 +289,11 @@ const NewsSection = () => {
           </p>
 
           <div
-            className={`flex justify-center mb-8 sm:mb-12 ${
+            className={`mb-8 sm:mb-12 -mx-4 px-4 sm:mx-0 sm:px-0 ${
               isVisible ? "animate-scroll-in-delay-1" : "opacity-0"
             }`}
           >
-            <div className="flex gap-2 overflow-x-auto pb-2 max-w-full hide-scrollbar">
+            <div className="flex gap-2 overflow-x-auto pb-2 hide-scrollbar sm:justify-center">
               {categories.map((category) => {
                 const count = category === "Все" 
                   ? news.length 
