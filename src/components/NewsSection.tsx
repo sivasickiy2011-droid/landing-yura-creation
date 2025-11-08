@@ -21,6 +21,7 @@ const NewsSection = () => {
   const [loading, setLoading] = useState(true);
   const [selectedNews, setSelectedNews] = useState<NewsItem | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
+  const [activeCategory, setActiveCategory] = useState<string>("Все");
 
   useEffect(() => {
     const fetchNews = async () => {
@@ -229,6 +230,12 @@ const NewsSection = () => {
     setModalOpen(true);
   };
 
+  const categories = ["Все", ...Array.from(new Set(news.map(item => item.category).filter(Boolean)))] as string[];
+
+  const filteredNews = activeCategory === "Все" 
+    ? news 
+    : news.filter(item => item.category === activeCategory);
+
   return (
     <>
       <section
@@ -245,12 +252,32 @@ const NewsSection = () => {
             Новости и статьи
           </h2>
           <p
-            className={`text-center text-gray-600 text-lg mb-12 max-w-2xl mx-auto ${
+            className={`text-center text-gray-600 text-lg mb-8 max-w-2xl mx-auto ${
               isVisible ? "animate-scroll-in-delay-1" : "opacity-0"
             }`}
           >
             Актуальные материалы о бизнес-автоматизации, CRM и digital-трансформации
           </p>
+
+          <div
+            className={`flex flex-wrap justify-center gap-2 mb-12 ${
+              isVisible ? "animate-scroll-in-delay-1" : "opacity-0"
+            }`}
+          >
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => setActiveCategory(category)}
+                className={`px-6 py-2.5 rounded-full font-medium transition-all duration-300 ${
+                  activeCategory === category
+                    ? "bg-blue-600 text-white shadow-lg scale-105"
+                    : "bg-white text-gray-700 hover:bg-gray-100 border border-gray-200 hover:border-blue-300"
+                }`}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
 
           {loading ? (
             <div className="flex justify-center items-center py-20">
@@ -258,7 +285,7 @@ const NewsSection = () => {
             </div>
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {news.slice(0, 7).map((item, index) => (
+              {filteredNews.slice(0, 7).map((item, index) => (
                 <Card
                   key={index}
                   className={`group relative overflow-hidden hover:shadow-2xl transition-all duration-500 cursor-pointer border-0 bg-white ${
@@ -266,16 +293,25 @@ const NewsSection = () => {
                   } ${index === 0 ? "md:col-span-2 md:row-span-2" : ""}`}
                   onClick={() => handleNewsClick(item)}
                 >
-                  <div className={`relative overflow-hidden ${index === 0 ? "h-96" : "h-48"}`}>
-                    {item.image && (
+                  <div className={`relative overflow-hidden ${index === 0 ? "h-96" : "h-48"} bg-gradient-to-br from-blue-50 to-purple-50`}>
+                    {item.image ? (
                       <>
                         <img
                           src={item.image}
                           alt={item.title}
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                          loading="lazy"
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            target.style.display = 'none';
+                          }}
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
                       </>
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <Icon name="Image" size={48} className="text-gray-400" />
+                      </div>
                     )}
                     {item.category && (
                       <Badge className="absolute top-4 left-4 bg-blue-600 hover:bg-blue-700 shadow-lg">
