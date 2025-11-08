@@ -2,8 +2,20 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TariffModal from "@/components/TariffModal";
+
+interface PriceData {
+  tariffs: Array<{
+    name: string;
+    priceMonth: string;
+    priceYear: string;
+  }>;
+  marketplace: {
+    priceMonth: string;
+    priceYear: string;
+  };
+}
 
 const PricingSection = () => {
   const { ref, isVisible } = useScrollAnimation(0.1);
@@ -12,12 +24,60 @@ const PricingSection = () => {
   const [expandedMobileCard, setExpandedMobileCard] = useState<number | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedTariff, setSelectedTariff] = useState("");
+  const [prices, setPrices] = useState<PriceData | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchPrices = async () => {
+      try {
+        const response = await fetch('https://functions.poehali.dev/3c9a518f-7dbb-40b0-9319-25d60020adde', {
+          cache: 'no-store'
+        });
+        const data = await response.json();
+        
+        if (data.success) {
+          setPrices({
+            tariffs: data.tariffs,
+            marketplace: data.marketplace
+          });
+        }
+      } catch (error) {
+        console.error('Error fetching prices:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPrices();
+  }, []);
+
+  const getPriceForPlan = (planName: string, period: 'month' | 'year') => {
+    if (!prices) {
+      const defaults: Record<string, {month: string, year: string}> = {
+        'Бесплатный': {month: '0', year: '0'},
+        'Базовый': {month: '2 490', year: '1 990'},
+        'Стандартный': {month: '6 990', year: '5 990'},
+        'Профессиональный': {month: '13 990', year: '11 990'}
+      };
+      return defaults[planName]?.[period] || '0';
+    }
+    
+    const tariff = prices.tariffs.find(t => 
+      t.name === planName || 
+      (planName === 'ПРО' && t.name === 'Профессиональный')
+    );
+    
+    if (!tariff) return '0';
+    
+    const price = period === 'month' ? tariff.priceMonth : tariff.priceYear;
+    return price.replace(/(\d)(?=(\d{3})+$)/g, '$1 ');
+  };
 
   const plans = [
     {
       name: "Бесплатный",
-      priceMonth: "0",
-      priceYear: "0",
+      priceMonth: getPriceForPlan('Бесплатный', 'month'),
+      priceYear: getPriceForPlan('Бесплатный', 'year'),
       description: "Для малых команд до 5 человек",
       iconUrl: "https://cdn.poehali.dev/files/3b204b2a-b201-43f8-b5f1-8302de3b5707.png",
       features: [
@@ -36,8 +96,8 @@ const PricingSection = () => {
     },
     {
       name: "Базовый",
-      priceMonth: "2 490",
-      priceYear: "1 990",
+      priceMonth: getPriceForPlan('Базовый', 'month'),
+      priceYear: getPriceForPlan('Базовый', 'year'),
       description: "Для небольших команд",
       iconUrl: "https://cdn.poehali.dev/files/3b204b2a-b201-43f8-b5f1-8302de3b5707.png",
       features: [
@@ -57,8 +117,8 @@ const PricingSection = () => {
     },
     {
       name: "Стандартный",
-      priceMonth: "6 990",
-      priceYear: "5 990",
+      priceMonth: getPriceForPlan('Стандартный', 'month'),
+      priceYear: getPriceForPlan('Стандартный', 'year'),
       popular: true,
       description: "Для растущих команд",
       iconUrl: "https://cdn.poehali.dev/files/1b090d13-b2ec-475c-878e-365c87d5995b.png",
@@ -81,8 +141,8 @@ const PricingSection = () => {
     {
       name: "ПРО",
       nameSmall: "фессиональный",
-      priceMonth: "13 990",
-      priceYear: "11 990",
+      priceMonth: getPriceForPlan('Профессиональный', 'month'),
+      priceYear: getPriceForPlan('Профессиональный', 'year'),
       description: "Для больших команд",
       iconUrl: "https://cdn.poehali.dev/files/2787cc67-c2c0-4231-879e-512d039dbb98.png",
       features: [
@@ -307,6 +367,134 @@ const PricingSection = () => {
               </Card>
             );
           })}
+        </div>
+
+        {/* Битрикс24 Маркетплейс */}
+        <div className={`mt-16 ${isVisible ? "animate-scroll-in-delay-3" : "opacity-0"}`}>
+          <div className="text-center mb-8">
+            <h3 className="font-heading font-bold text-3xl md:text-4xl mb-3 text-gray-900">
+              Битрикс24 Маркетплейс
+            </h3>
+            <p className="text-gray-600 text-lg max-w-3xl mx-auto">
+              Расширьте возможности вашего Битрикс24 готовыми решениями от проверенных разработчиков
+            </p>
+          </div>
+
+          <Card className="max-w-4xl mx-auto border-2 border-purple-300 bg-gradient-to-br from-purple-50 via-white to-blue-50 shadow-2xl rounded-3xl overflow-hidden">
+            <CardContent className="p-8 md:p-12">
+              <div className="grid md:grid-cols-2 gap-8 items-center">
+                <div className="space-y-6">
+                  <div className="flex items-center gap-4">
+                    <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-blue-500 rounded-2xl flex items-center justify-center shadow-lg">
+                      <Icon name="ShoppingBag" size={32} className="text-white" />
+                    </div>
+                    <div>
+                      <h4 className="font-heading font-bold text-2xl text-gray-900">
+                        Подписка Маркетплейс
+                      </h4>
+                      <p className="text-sm text-purple-600 font-semibold">
+                        Неограниченный доступ ко всем приложениям
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-3">
+                      <Icon name="Check" size={20} className="text-green-600 flex-shrink-0" />
+                      <span className="text-gray-700">1000+ готовых приложений и интеграций</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <Icon name="Check" size={20} className="text-green-600 flex-shrink-0" />
+                      <span className="text-gray-700">Без дополнительных платежей</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <Icon name="Check" size={20} className="text-green-600 flex-shrink-0" />
+                      <span className="text-gray-700">Обновления и поддержка включены</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <Icon name="Check" size={20} className="text-green-600 flex-shrink-0" />
+                      <span className="text-gray-700">Отраслевые решения и инструменты</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-2xl p-8 shadow-xl border-2 border-purple-200">
+                  <div className="text-center mb-6">
+                    <div className="inline-flex items-center gap-2 bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                      <Icon name="Sparkles" size={16} />
+                      <span>Экономия до 80%</span>
+                    </div>
+                    
+                    {loading ? (
+                      <div className="flex justify-center py-6">
+                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600"></div>
+                      </div>
+                    ) : (
+                      <>
+                        <div className="mb-2">
+                          <span className="text-5xl font-heading font-bold text-gray-900">
+                            ₽{prices ? 
+                              (billingPeriod === "month" ? 
+                                prices.marketplace.priceMonth.replace(/(\d)(?=(\d{3})+$)/g, '$1 ') : 
+                                prices.marketplace.priceYear.replace(/(\d)(?=(\d{3})+$)/g, '$1 ')
+                              ) : 
+                              (billingPeriod === "month" ? "2 990" : "2 490")
+                            }
+                          </span>
+                          <span className="text-gray-400 text-base ml-2">
+                            /месяц
+                          </span>
+                        </div>
+                        {billingPeriod === "year" && (
+                          <div className="text-sm text-green-600 font-semibold">
+                            При оплате за год
+                          </div>
+                        )}
+                      </>
+                    )}
+                  </div>
+
+                  <Button
+                    onClick={() => {
+                      setSelectedTariff("Маркетплейс");
+                      setModalOpen(true);
+                    }}
+                    className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white py-6 rounded-2xl font-semibold text-base shadow-lg"
+                  >
+                    Подключить Маркетплейс
+                  </Button>
+
+                  <p className="text-xs text-gray-500 text-center mt-4">
+                    Подписка активируется дополнительно к основному тарифу
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-8 pt-8 border-t border-gray-200">
+                <h5 className="font-bold text-lg mb-4 text-gray-900 flex items-center gap-2">
+                  <Icon name="Star" size={20} className="text-purple-600" />
+                  Популярные категории приложений:
+                </h5>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                  {[
+                    { icon: "Database", text: "1С и учёт" },
+                    { icon: "MessageSquare", text: "Мессенджеры" },
+                    { icon: "BarChart3", text: "Аналитика" },
+                    { icon: "FileText", text: "Документы" },
+                    { icon: "ShoppingCart", text: "E-commerce" },
+                    { icon: "Phone", text: "Телефония" },
+                    { icon: "Mail", text: "Email" },
+                    { icon: "Zap", text: "Автоматизация" },
+                  ].map((cat, idx) => (
+                    <div key={idx} className="flex items-center gap-2 bg-gray-50 rounded-lg p-3 hover:bg-gray-100 transition-colors">
+                      <Icon name={cat.icon as any} size={16} className="text-purple-600" />
+                      <span className="text-sm text-gray-700">{cat.text}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
 
