@@ -1,4 +1,5 @@
 {
+  "integration-request": "https://functions.poehali.dev/c7e1adaa-c977-4f49-92b4-73e01ac10dbb",
   "bitrix24-webhook": "https://functions.poehali.dev/fb7f05cf-e9c2-467c-af4d-e76a9081a605",
   "telegram-notify": "https://functions.poehali.dev/95830b61-9b82-45e6-b96c-bcb5ef3bbf7b"
 }

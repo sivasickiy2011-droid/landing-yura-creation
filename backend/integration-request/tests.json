@@ -1,0 +1,41 @@
+{
+  "tests": [
+    {
+      "name": "Handle OPTIONS request",
+      "method": "OPTIONS",
+      "path": "/",
+      "expectedStatus": 200,
+      "expectedBody": "",
+      "bodyMatcher": "exact"
+    },
+    {
+      "name": "Submit integration request",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "companyName": "Test Company",
+        "contactPerson": "John Doe",
+        "email": "test@example.com",
+        "phone": "+7 900 123-45-67",
+        "telegram": "@testuser",
+        "industry": "IT и разработка",
+        "companySize": "11-50",
+        "currentCrm": "amoCRM",
+        "integrationNeeds": ["1С", "WhatsApp"],
+        "budget": "100000-300000",
+        "timeline": "month",
+        "mainGoals": "Автоматизация продаж",
+        "description": "Нужна интеграция с 1С",
+        "calculatedCost": 150000,
+        "users": 25,
+        "integrations": 3,
+        "contactMethod": "telegram"
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}

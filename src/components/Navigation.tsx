@@ -58,10 +58,22 @@ const Navigation = ({ mobileMenuOpen, setMobileMenuOpen, scrollToSection }: Navi
                 О сервисе
               </button>
               <button
+                onClick={() => scrollToSection("news")}
+                className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
+              >
+                Новости
+              </button>
+              <button
                 onClick={() => scrollToSection("pricing")}
                 className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
               >
                 Тарифы
+              </button>
+              <button
+                onClick={() => scrollToSection("integration")}
+                className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
+              >
+                Внедрение
               </button>
               <button
                 onClick={() => scrollToSection("capabilities")}
@@ -114,10 +126,22 @@ const Navigation = ({ mobileMenuOpen, setMobileMenuOpen, scrollToSection }: Navi
               О сервисе
             </button>
             <button
+              onClick={() => scrollToSection("news")}
+              className="block w-full text-left px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 font-medium transition-colors rounded-lg"
+            >
+              Новости
+            </button>
+            <button
               onClick={() => scrollToSection("pricing")}
               className="block w-full text-left px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 font-medium transition-colors rounded-lg"
             >
               Тарифы
+            </button>
+            <button
+              onClick={() => scrollToSection("integration")}
+              className="block w-full text-left px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 font-medium transition-colors rounded-lg"
+            >
+              Внедрение
             </button>
             <button
               onClick={() => scrollToSection("capabilities")}
