@@ -5,6 +5,25 @@ import Icon from "@/components/ui/icon";
 const CapabilitiesSection = () => {
   const { ref, isVisible } = useScrollAnimation(0.1);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStart - touchEnd > 75) {
+      setCurrentSlide(prev => Math.min(prev + 1, capabilities.length - 1));
+    }
+    if (touchStart - touchEnd < -75) {
+      setCurrentSlide(prev => Math.max(prev - 1, 0));
+    }
+  };
   
   const capabilities = [
     {
@@ -84,7 +103,12 @@ const CapabilitiesSection = () => {
 
         {/* Mobile Slider */}
         <div className="md:hidden">
-          <div className="overflow-hidden">
+          <div 
+            className="overflow-hidden"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
             <div 
               className="flex transition-transform duration-300 ease-out"
               style={{ transform: `translateX(-${currentSlide * 100}%)` }}
