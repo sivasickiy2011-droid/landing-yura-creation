@@ -233,6 +233,7 @@ const PricingSection = () => {
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
         tariffName={selectedTariff}
+        billingPeriod={billingPeriod}
       />
     </section>
   );

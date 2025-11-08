@@ -73,10 +73,12 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         company = body_data.get('company', '')
         message = body_data.get('message', '')
         tariff = body_data.get('tariff', '')
+        billing_period = body_data.get('billingPeriod', '')
         
         # Build Telegram message
         if tariff:
-            text = f"""🎯 <b>Новая заявка на тариф: {tariff}</b>
+            period_info = f" ({billing_period})" if billing_period else ""
+            text = f"""🎯 <b>Новая заявка на тариф: {tariff}{period_info}</b>
 
 👤 <b>ФИО:</b> {name}
 📞 <b>Телефон:</b> {phone}

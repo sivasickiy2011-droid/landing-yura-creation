@@ -10,9 +10,10 @@ interface TariffModalProps {
   isOpen: boolean;
   onClose: () => void;
   tariffName: string;
+  billingPeriod?: 'month' | 'year';
 }
 
-const TariffModal = ({ isOpen, onClose, tariffName }: TariffModalProps) => {
+const TariffModal = ({ isOpen, onClose, tariffName, billingPeriod = 'month' }: TariffModalProps) => {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -34,9 +35,11 @@ const TariffModal = ({ isOpen, onClose, tariffName }: TariffModalProps) => {
     try {
       const recaptchaToken = await executeRecaptcha('submit_tariff_form');
 
+      const periodText = billingPeriod === 'year' ? '12 месяцев' : '6 месяцев';
       const formPayload = {
         ...formData,
         tariff: tariffName,
+        billingPeriod: periodText,
         recaptchaToken
       };
 
