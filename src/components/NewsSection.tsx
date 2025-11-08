@@ -249,6 +249,19 @@ const NewsSection = () => {
     }
   };
 
+  const getCategoryFallbackImage = (category?: string) => {
+    switch (category) {
+      case "Технологии": return "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&q=80";
+      case "Продажи": return "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80";
+      case "Автоматизация": return "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=800&q=80";
+      case "Управление": return "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80";
+      case "Аналитика": return "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80";
+      case "Безопасность": return "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&q=80";
+      case "Интеграции": return "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80";
+      default: return "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&q=80";
+    }
+  };
+
   return (
     <>
       <section
@@ -319,28 +332,20 @@ const NewsSection = () => {
                   onClick={() => handleNewsClick(item)}
                 >
                   <div className={`relative overflow-hidden ${index === 0 ? "h-96" : "h-48"} bg-gradient-to-br from-blue-50 to-purple-50`}>
-                    {item.image ? (
-                      <>
-                        <img
-                          src={item.image}
-                          alt={item.title}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                          loading="lazy"
-                          onError={(e) => {
-                            const target = e.target as HTMLImageElement;
-                            target.style.display = 'none';
-                          }}
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                      </>
-                    ) : (
-                      <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
-                        <div className="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
-                          <Icon name={getCategoryIcon(item.category) as any} size={40} className="text-white" />
-                        </div>
-                        <span className="text-white font-medium text-lg">{item.category}</span>
-                      </div>
-                    )}
+                    <img
+                      src={item.image || getCategoryFallbackImage(item.category)}
+                      alt={item.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                      loading="lazy"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        const fallback = getCategoryFallbackImage(item.category);
+                        if (target.src !== fallback) {
+                          target.src = fallback;
+                        }
+                      }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
                     {item.category && (
                       <Badge className="absolute top-4 left-4 bg-blue-600 hover:bg-blue-700 shadow-lg">
                         {item.category}
