@@ -226,9 +226,18 @@ const IntegrationSection = () => {
             >
               <Card className="bg-gradient-to-br from-blue-50 to-purple-50 border-2 border-blue-200 shadow-xl">
                 <CardContent className="p-8">
-                  <h3 className="font-bold text-2xl mb-6 text-gray-900">
+                  <h3 className="font-bold text-2xl mb-3 text-gray-900">
                     Калькулятор внедрения
                   </h3>
+                  <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 mb-6">
+                    <p className="text-xs text-amber-800 flex items-start gap-2">
+                      <Icon name="Info" size={14} className="mt-0.5 flex-shrink-0" />
+                      <span>
+                        Указаны средние цены для ориентировочного расчёта. 
+                        Для получения персонального коммерческого предложения заполните анкету.
+                      </span>
+                    </p>
+                  </div>
 
                   <div className="space-y-6">
                     <div>
@@ -311,7 +320,7 @@ const IntegrationSection = () => {
                           </span>
                         </div>
                         <div className="border-t-2 border-gray-200 pt-3">
-                          <div className="flex justify-between items-center">
+                          <div className="flex justify-between items-center mb-2">
                             <span className="text-lg font-bold text-gray-900">
                               Общая стоимость:
                             </span>
@@ -319,6 +328,12 @@ const IntegrationSection = () => {
                               {calculateTotalCost().toLocaleString()} ₽
                             </span>
                           </div>
+                          {selectedServices.length > 0 && (
+                            <p className="text-xs text-gray-500 flex items-center gap-1">
+                              <Icon name="AlertCircle" size={12} />
+                              Ориентировочная стоимость по среднему чеку
+                            </p>
+                          )}
                         </div>
                         {selectedServices.length === 0 && (
                           <p className="text-xs text-gray-500 text-center pt-2">
@@ -328,12 +343,17 @@ const IntegrationSection = () => {
                       </div>
                     </div>
 
-                    <Button
-                      onClick={() => setModalOpen(true)}
-                      className="w-full bg-blue-600 hover:bg-blue-700 text-white py-6 rounded-full font-semibold shadow-lg text-lg"
-                    >
-                      Получить коммерческое предложение
-                    </Button>
+                    <div className="space-y-2">
+                      <Button
+                        onClick={() => setModalOpen(true)}
+                        className="w-full bg-blue-600 hover:bg-blue-700 text-white py-6 rounded-full font-semibold shadow-lg text-lg"
+                      >
+                        Заполнить анкету на внедрение
+                      </Button>
+                      <p className="text-xs text-center text-gray-500">
+                        Получите индивидуальное КП с учётом вашей специфики
+                      </p>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
