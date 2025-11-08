@@ -40,9 +40,9 @@ const NewsModal = ({ open, onOpenChange, news }: NewsModalProps) => {
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <div className="space-y-4">
+          <div className="space-y-3 sm:space-y-4">
             {news.image && (
-              <div className="relative w-full h-64 -mx-6 -mt-6 mb-4">
+              <div className="relative w-full h-48 sm:h-56 md:h-64 -mx-4 sm:-mx-6 -mt-4 sm:-mt-6 mb-3 sm:mb-4">
                 <img
                   src={news.image}
                   alt={news.title}
@@ -54,20 +54,20 @@ const NewsModal = ({ open, onOpenChange, news }: NewsModalProps) => {
             
             <div className="space-y-2">
               {news.category && (
-                <Badge className="bg-blue-600 hover:bg-blue-700">
+                <Badge className="bg-blue-600 hover:bg-blue-700 text-xs sm:text-sm">
                   {news.category}
                 </Badge>
               )}
-              <DialogTitle className="text-3xl font-bold leading-tight">
+              <DialogTitle className="text-xl sm:text-2xl md:text-3xl font-bold leading-tight">
                 {news.title}
               </DialogTitle>
-              <div className="flex items-center gap-4 text-sm text-gray-500">
-                <div className="flex items-center gap-2">
-                  <Icon name="Calendar" size={16} />
+              <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-xs sm:text-sm text-gray-500">
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  <Icon name="Calendar" size={14} className="sm:w-4 sm:h-4" />
                   <span>{formatDate(news.pubDate)}</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <Icon name="Clock" size={16} />
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  <Icon name="Clock" size={14} className="sm:w-4 sm:h-4" />
                   <span>5 мин чтения</span>
                 </div>
               </div>
@@ -75,17 +75,17 @@ const NewsModal = ({ open, onOpenChange, news }: NewsModalProps) => {
           </div>
         </DialogHeader>
 
-        <div className="space-y-6 py-6">
-          <div className="prose prose-lg max-w-none">
+        <div className="space-y-4 sm:space-y-6 py-4 sm:py-6">
+          <div className="prose prose-sm sm:prose-base md:prose-lg max-w-none">
             {news.fullContent ? (
               <div dangerouslySetInnerHTML={{ __html: news.fullContent }} />
             ) : (
-              <div className="space-y-4">
-                <p className="text-lg text-gray-700 leading-relaxed">
+              <div className="space-y-3 sm:space-y-4">
+                <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
                   {news.description}
                 </p>
-                <div className="bg-blue-50 border-l-4 border-blue-600 p-6 rounded-r-lg">
-                  <p className="text-gray-700">
+                <div className="bg-blue-50 border-l-4 border-blue-600 p-4 sm:p-6 rounded-r-lg">
+                  <p className="text-sm sm:text-base text-gray-700">
                     Это краткое описание статьи. Для просмотра полной версии 
                     перейдите по ссылке на первоисточник ниже.
                   </p>
@@ -94,34 +94,34 @@ const NewsModal = ({ open, onOpenChange, news }: NewsModalProps) => {
             )}
           </div>
 
-          <div className="border-t pt-6 space-y-4">
-            <div className="flex items-center gap-3">
-              <Icon name="ExternalLink" size={20} className="text-gray-400" />
-              <div>
-                <p className="text-sm text-gray-600">Источник:</p>
+          <div className="border-t pt-4 sm:pt-6 space-y-3 sm:space-y-4">
+            <div className="flex items-start sm:items-center gap-2 sm:gap-3">
+              <Icon name="ExternalLink" size={18} className="text-gray-400 mt-0.5 sm:mt-0 flex-shrink-0" />
+              <div className="min-w-0">
+                <p className="text-xs sm:text-sm text-gray-600">Источник:</p>
                 <a
                   href={news.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-600 hover:text-blue-700 font-medium hover:underline"
+                  className="text-sm sm:text-base text-blue-600 hover:text-blue-700 font-medium hover:underline break-words"
                 >
                   {new URL(news.link).hostname}
                 </a>
               </div>
             </div>
 
-            <div className="flex gap-3">
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
               <Button
                 onClick={() => window.open(news.link, "_blank")}
-                className="flex-1 bg-blue-600 hover:bg-blue-700"
+                className="flex-1 bg-blue-600 hover:bg-blue-700 text-sm sm:text-base"
               >
                 <Icon name="ExternalLink" size={16} className="mr-2" />
-                Читать на сайте источника
+                <span className="truncate">Читать на сайте источника</span>
               </Button>
               <Button
                 variant="outline"
                 onClick={() => onOpenChange(false)}
-                className="flex-1"
+                className="flex-1 text-sm sm:text-base"
               >
                 Закрыть
               </Button>

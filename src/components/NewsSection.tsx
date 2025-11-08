@@ -269,18 +269,18 @@ const NewsSection = () => {
       <section
         ref={ref}
         id="news"
-        className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-50 to-white"
+        className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-50 to-white"
       >
         <div className="max-w-[1460px] mx-auto">
           <h2
-            className={`font-heading font-bold text-4xl md:text-5xl text-center mb-4 ${
+            className={`font-heading font-bold text-3xl sm:text-4xl md:text-5xl text-center mb-3 sm:mb-4 ${
               isVisible ? "animate-scroll-in" : "opacity-0"
             }`}
           >
             Новости и статьи
           </h2>
           <p
-            className={`text-center text-gray-600 text-lg mb-8 max-w-2xl mx-auto ${
+            className={`text-center text-gray-600 text-base sm:text-lg mb-6 sm:mb-8 max-w-2xl mx-auto px-2 ${
               isVisible ? "animate-scroll-in-delay-1" : "opacity-0"
             }`}
           >
@@ -288,7 +288,7 @@ const NewsSection = () => {
           </p>
 
           <div
-            className={`flex flex-wrap justify-center gap-2 mb-12 ${
+            className={`flex flex-wrap justify-center gap-2 mb-8 sm:mb-12 ${
               isVisible ? "animate-scroll-in-delay-1" : "opacity-0"
             }`}
           >
@@ -300,7 +300,7 @@ const NewsSection = () => {
                 <button
                   key={category}
                   onClick={() => setActiveCategory(category)}
-                  className={`px-6 py-2.5 rounded-full font-medium transition-all duration-300 flex items-center gap-2 ${
+                  className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-full font-medium transition-all duration-300 flex items-center gap-1.5 sm:gap-2 text-sm sm:text-base ${
                     activeCategory === category
                       ? "bg-blue-600 text-white shadow-lg scale-105"
                       : "bg-white text-gray-700 hover:bg-gray-100 border border-gray-200 hover:border-blue-300"
@@ -324,18 +324,18 @@ const NewsSection = () => {
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
             </div>
           ) : (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
               {filteredNews.slice(0, 7).map((item, index) => (
                 <Card
                   key={index}
-                  className={`group relative overflow-hidden hover:shadow-2xl transition-all duration-500 cursor-pointer border-0 bg-white ${
+                  className={`group relative overflow-hidden hover:shadow-2xl transition-all duration-500 cursor-pointer border bg-white ${
                     isVisible ? "animate-scroll-in-delay-2" : "opacity-0"
                   } ${index === 0 ? "md:col-span-2 md:row-span-2" : ""}`}
                   onClick={() => handleNewsClick(item)}
                 >
                   {index === 0 ? (
                     <div className="h-full flex flex-col">
-                      <div className="relative overflow-hidden h-64 bg-gradient-to-br from-blue-50 to-purple-50">
+                      <div className="relative overflow-hidden h-48 sm:h-56 md:h-64 bg-gradient-to-br from-blue-50 to-purple-50">
                         <img
                           src={item.image}
                           alt={item.title}
@@ -343,27 +343,27 @@ const NewsSection = () => {
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent pointer-events-none" />
                         {item.category && (
-                          <Badge className="absolute top-4 left-4 bg-blue-600 hover:bg-blue-700 shadow-lg">
+                          <Badge className="absolute top-3 left-3 sm:top-4 sm:left-4 bg-blue-600 hover:bg-blue-700 shadow-lg text-xs sm:text-sm">
                             {item.category}
                           </Badge>
                         )}
                       </div>
                       
-                      <CardContent className="p-8 flex-1 flex flex-col justify-between">
+                      <CardContent className="p-4 sm:p-6 md:p-8 flex-1 flex flex-col justify-between">
                         <div>
-                          <div className="flex items-center gap-2 text-xs text-gray-500 mb-3">
+                          <div className="flex items-center gap-1.5 sm:gap-2 text-xs text-gray-500 mb-2 sm:mb-3">
                             <Icon name="Calendar" size={14} />
                             <span>{formatDate(item.pubDate)}</span>
                           </div>
-                          <h3 className="font-bold text-2xl mb-4 leading-tight text-gray-900">
+                          <h3 className="font-bold text-lg sm:text-xl md:text-2xl mb-3 sm:mb-4 leading-tight text-gray-900">
                             {item.title}
                           </h3>
-                          <p className="text-base text-gray-600 leading-relaxed mb-6 line-clamp-4">
+                          <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-4 sm:mb-6 line-clamp-3 sm:line-clamp-4">
                             {item.description}
                           </p>
                         </div>
                         
-                        <div className="flex items-center text-blue-600 font-semibold group-hover:gap-2 transition-all">
+                        <div className="flex items-center text-blue-600 font-semibold text-sm sm:text-base group-hover:gap-2 transition-all">
                           <span>Читать полностью</span>
                           <Icon 
                             name="ArrowRight" 
@@ -375,7 +375,7 @@ const NewsSection = () => {
                     </div>
                   ) : (
                     <>
-                      <div className="relative overflow-hidden h-48 bg-gradient-to-br from-blue-50 to-purple-50">
+                      <div className="relative overflow-hidden h-44 sm:h-48 bg-gradient-to-br from-blue-50 to-purple-50">
                         <img
                           src={item.image}
                           alt={item.title}
@@ -383,23 +383,23 @@ const NewsSection = () => {
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none" />
                         {item.category && (
-                          <Badge className="absolute top-4 left-4 bg-blue-600 hover:bg-blue-700 shadow-lg">
+                          <Badge className="absolute top-3 left-3 sm:top-4 sm:left-4 bg-blue-600 hover:bg-blue-700 shadow-lg text-xs">
                             {item.category}
                           </Badge>
                         )}
-                        <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                          <div className="flex items-center gap-2 text-xs mb-2 opacity-90">
+                        <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 text-white">
+                          <div className="flex items-center gap-1.5 sm:gap-2 text-xs mb-1.5 sm:mb-2 opacity-90">
                             <Icon name="Calendar" size={14} />
                             <span>{formatDate(item.pubDate)}</span>
                           </div>
-                          <h3 className="font-bold text-lg mb-2 line-clamp-2">
+                          <h3 className="font-bold text-base sm:text-lg mb-2 line-clamp-2">
                             {item.title}
                           </h3>
                         </div>
                       </div>
                       
-                      <CardContent className="p-6">
-                        <p className="text-sm text-gray-600 line-clamp-3 leading-relaxed mb-4">
+                      <CardContent className="p-4 sm:p-6">
+                        <p className="text-sm text-gray-600 line-clamp-3 leading-relaxed mb-3 sm:mb-4">
                           {item.description}
                         </p>
                         <div className="flex items-center text-blue-600 font-semibold text-sm group-hover:gap-2 transition-all">
