@@ -289,41 +289,46 @@ const NewsSection = () => {
           </p>
 
           <div
-            className={`mb-8 sm:mb-12 -mx-4 px-4 sm:mx-0 sm:px-0 ${
+            className={`mb-8 sm:mb-12 ${
               isVisible ? "animate-scroll-in-delay-1" : "opacity-0"
             }`}
           >
-            <div className="flex gap-2 overflow-x-auto pb-2 hide-scrollbar sm:justify-center">
-              {categories.map((category) => {
-                const count = category === "Все" 
-                  ? news.length 
-                  : news.filter(item => item.category === category).length;
-                const icon = getCategoryIcon(category);
-                return (
-                  <button
-                    key={category}
-                    onClick={() => setActiveCategory(category)}
-                    className={`flex-shrink-0 relative group ${
-                      activeCategory === category
-                        ? "bg-blue-600 text-white shadow-lg"
-                        : "bg-white text-gray-700 hover:bg-gray-100 border border-gray-200 hover:border-blue-300"
-                    } rounded-full transition-all duration-300`}
-                    title={category}
-                  >
-                    <div className="px-3 py-2 sm:px-4 sm:py-2.5 flex items-center gap-2">
-                      <Icon name={icon as any} size={18} className="sm:w-5 sm:h-5" />
-                      <span className="hidden sm:inline font-medium">{category}</span>
-                      <span className={`text-xs px-1.5 sm:px-2 py-0.5 rounded-full min-w-[20px] text-center ${
+            <div className="relative sm:flex sm:justify-center">
+              <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-gray-50 to-transparent pointer-events-none z-10 sm:hidden" />
+              <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white to-transparent pointer-events-none z-10 sm:hidden" />
+              
+              <div className="flex gap-2 overflow-x-auto pb-2 hide-scrollbar px-4 sm:px-0 -mx-4 sm:mx-0">
+                {categories.map((category) => {
+                  const count = category === "Все" 
+                    ? news.length 
+                    : news.filter(item => item.category === category).length;
+                  const icon = getCategoryIcon(category);
+                  return (
+                    <button
+                      key={category}
+                      onClick={() => setActiveCategory(category)}
+                      className={`flex-shrink-0 relative group ${
                         activeCategory === category
-                          ? "bg-white/20"
-                          : "bg-gray-200"
-                      }`}>
-                        {count}
-                      </span>
-                    </div>
-                  </button>
-                );
-              })}
+                          ? "bg-blue-600 text-white shadow-lg"
+                          : "bg-white text-gray-700 hover:bg-gray-100 border border-gray-200 hover:border-blue-300"
+                      } rounded-full transition-all duration-300`}
+                      title={category}
+                    >
+                      <div className="px-3 py-2 sm:px-4 sm:py-2.5 flex items-center gap-2">
+                        <Icon name={icon as any} size={18} className="sm:w-5 sm:h-5" />
+                        <span className="hidden sm:inline font-medium">{category}</span>
+                        <span className={`text-xs px-1.5 sm:px-2 py-0.5 rounded-full min-w-[20px] text-center ${
+                          activeCategory === category
+                            ? "bg-white/20"
+                            : "bg-gray-200"
+                        }`}>
+                          {count}
+                        </span>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           </div>
 
@@ -332,8 +337,12 @@ const NewsSection = () => {
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
             </div>
           ) : (
-            <div className="md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 flex md:flex-none overflow-x-auto pb-4 md:pb-0 -mx-4 px-4 sm:mx-0 sm:px-0 snap-x snap-mandatory hide-scrollbar">
-              {filteredNews.slice(0, 7).map((item, index) => (
+            <div className="relative">
+              <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-gray-50 to-transparent pointer-events-none z-10 md:hidden" />
+              <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white to-transparent pointer-events-none z-10 md:hidden" />
+              
+              <div className="md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 flex md:flex-none overflow-x-auto pb-4 md:pb-0 -mx-4 px-4 sm:mx-0 sm:px-0 snap-x snap-mandatory hide-scrollbar">
+                {filteredNews.slice(0, 7).map((item, index) => (
                 <Card
                   key={index}
                   className={`group relative overflow-hidden hover:shadow-2xl transition-all duration-500 cursor-pointer border bg-white flex-shrink-0 w-[85vw] sm:w-[400px] md:w-auto md:flex-shrink snap-center ${
@@ -423,6 +432,7 @@ const NewsSection = () => {
                   )}
                 </Card>
               ))}
+              </div>
             </div>
           )}
         </div>
