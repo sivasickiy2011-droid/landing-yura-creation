@@ -26,7 +26,9 @@ const NewsSection = () => {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const response = await fetch('https://functions.poehali.dev/6b8ae2f1-ce10-4bd0-8d36-9d1b307284de');
+        const response = await fetch('https://functions.poehali.dev/6b8ae2f1-ce10-4bd0-8d36-9d1b307284de', {
+          cache: 'no-store'
+        });
         const data = await response.json();
         
         if (data.success && data.items) {
@@ -331,19 +333,11 @@ const NewsSection = () => {
                   } ${index === 0 ? "md:col-span-2 md:row-span-2" : ""}`}
                   onClick={() => handleNewsClick(item)}
                 >
-                  <div className={`relative overflow-hidden ${index === 0 ? "h-96" : "h-48"}`}>
-                    <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-purple-50" />
+                  <div className={`relative overflow-hidden ${index === 0 ? "h-96" : "h-48"} bg-gradient-to-br from-blue-50 to-purple-50`}>
                     <img
                       src={item.image}
                       alt={item.title}
-                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-0"
-                      onLoad={(e) => {
-                        (e.target as HTMLImageElement).classList.remove('opacity-0');
-                        (e.target as HTMLImageElement).classList.add('opacity-100');
-                      }}
-                      onError={(e) => {
-                        (e.target as HTMLImageElement).style.display = 'none';
-                      }}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none" />
                     {item.category && (
