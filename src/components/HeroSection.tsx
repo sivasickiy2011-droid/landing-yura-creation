@@ -7,10 +7,10 @@ interface HeroSectionProps {
 }
 
 const problems = [
-  { icon: "Users", text: "Команда разбросана по разным мессенджерам" },
-  { icon: "MessageSquare", text: "Заявки теряются и не обрабатываются вовремя" },
-  { icon: "FileSearch", text: "Документы хранятся в хаосе" },
-  { icon: "TrendingDown", text: "Продажи проваливаются из-за плохой CRM" }
+  { image: "https://cdn.poehali.dev/projects/698c952d-7b06-45e8-bd15-e431cfcf90bd/files/07a1bd15-a200-4dfc-bb98-3687be1ee208.jpg", text: "Команда разбросана по разным мессенджерам" },
+  { image: "https://cdn.poehali.dev/projects/698c952d-7b06-45e8-bd15-e431cfcf90bd/files/ded6d909-377a-44b4-b6b9-67b38de97a18.jpg", text: "Заявки теряются и не обрабатываются вовремя" },
+  { image: "https://cdn.poehali.dev/projects/698c952d-7b06-45e8-bd15-e431cfcf90bd/files/ad1e308a-8cc9-460b-abb8-7e9ed645a98b.jpg", text: "Документы хранятся в хаосе" },
+  { image: "https://cdn.poehali.dev/projects/698c952d-7b06-45e8-bd15-e431cfcf90bd/files/8926f216-54fe-460a-9877-883a017bcbc3.jpg", text: "Продажи проваливаются из-за плохой CRM" }
 ];
 
 const solutions = [
@@ -26,7 +26,7 @@ const HeroSection = ({ scrollToSection }: HeroSectionProps) => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentProblem((prev) => (prev + 1) % problems.length);
-    }, 3000);
+    }, 5000);
     return () => clearInterval(interval);
   }, []);
 
@@ -47,17 +47,17 @@ const HeroSection = ({ scrollToSection }: HeroSectionProps) => {
         </div>
 
         <h1 className="font-heading font-bold text-4xl md:text-7xl text-center mb-6 md:mb-8 animate-scale-in leading-tight">
-          <span className="text-gray-900">Ваш бизнес</span>{" "}
-          <span className="text-blue-600 relative inline-block">
-            <span className="absolute -inset-2 bg-blue-100 rounded-lg -z-10 animate-pulse"></span>
-            растёт
-          </span>
+          <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Битрикс24</span>
+          {" "}
+          <span className="text-gray-900">+</span>
+          {" "}
+          <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">CoPilot AI</span>
           <br />
-          <span className="text-gray-900">когда всё под контролем</span>
+          <span className="text-gray-900">Ваш бизнес под контролем</span>
         </h1>
 
         <p className="text-center text-gray-600 text-lg md:text-2xl max-w-4xl mx-auto mb-8 md:mb-12 animate-fade-in font-medium">
-          Битрикс24 — это корпоративный портал, CRM и инструменты для совместной работы в одном месте
+          Корпоративный портал, CRM и ИИ-помощник для автоматизации продаж и управления командой
         </p>
 
         <div className="mb-12 md:mb-16 bg-white/80 backdrop-blur-sm rounded-3xl p-6 md:p-8 shadow-2xl border border-gray-200 max-w-4xl mx-auto">
@@ -66,20 +66,24 @@ const HeroSection = ({ scrollToSection }: HeroSectionProps) => {
             <h3 className="text-lg md:text-xl font-bold text-gray-900">Знакомые проблемы?</h3>
           </div>
           
-          <div className="relative h-24 md:h-20 mb-8">
+          <div className="relative h-48 md:h-40 mb-8">
             {problems.map((problem, index) => (
               <div
                 key={index}
-                className={`absolute inset-0 flex items-center justify-center gap-4 transition-all duration-500 ${
+                className={`absolute inset-0 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6 transition-all duration-700 ${
                   index === currentProblem 
                     ? 'opacity-100 scale-100' 
                     : 'opacity-0 scale-95 pointer-events-none'
                 }`}
               >
-                <div className="bg-red-50 p-3 rounded-full">
-                  <Icon name={problem.icon as any} size={24} className="text-red-600" />
+                <div className="flex-shrink-0">
+                  <img 
+                    src={problem.image} 
+                    alt={problem.text}
+                    className="w-24 h-24 md:w-32 md:h-32 object-cover rounded-2xl shadow-lg"
+                  />
                 </div>
-                <p className="text-base md:text-xl font-semibold text-gray-800 text-center max-w-md">
+                <p className="text-base md:text-xl font-semibold text-gray-800 text-center md:text-left max-w-md">
                   {problem.text}
                 </p>
               </div>
