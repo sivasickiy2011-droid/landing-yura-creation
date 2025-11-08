@@ -331,21 +331,21 @@ const NewsSection = () => {
                   } ${index === 0 ? "md:col-span-2 md:row-span-2" : ""}`}
                   onClick={() => handleNewsClick(item)}
                 >
-                  <div className={`relative overflow-hidden ${index === 0 ? "h-96" : "h-48"} bg-gradient-to-br from-blue-50 to-purple-50`}>
+                  <div className={`relative overflow-hidden ${index === 0 ? "h-96" : "h-48"}`}>
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-purple-50" />
                     <img
-                      src={item.image || getCategoryFallbackImage(item.category)}
+                      src={item.image}
                       alt={item.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                      loading="lazy"
+                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-0"
+                      onLoad={(e) => {
+                        (e.target as HTMLImageElement).classList.remove('opacity-0');
+                        (e.target as HTMLImageElement).classList.add('opacity-100');
+                      }}
                       onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        const fallback = getCategoryFallbackImage(item.category);
-                        if (target.src !== fallback) {
-                          target.src = fallback;
-                        }
+                        (e.target as HTMLImageElement).style.display = 'none';
                       }}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none" />
                     {item.category && (
                       <Badge className="absolute top-4 left-4 bg-blue-600 hover:bg-blue-700 shadow-lg">
                         {item.category}

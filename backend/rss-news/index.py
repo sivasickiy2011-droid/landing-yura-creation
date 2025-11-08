@@ -137,7 +137,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 'description': 'Как AI-ассистенты помогают менеджерам закрывать больше сделок, прогнозировать поведение клиентов и автоматизировать рутинные задачи.',
                 'link': 'https://www.bitrix24.ru/',
                 'pubDate': 'Fri, 07 Nov 2025 12:00:00 +0300',
-                'image': 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&q=80',
+                'image': 'https://cdn.poehali.dev/projects/698c952d-7b06-45e8-bd15-e431cfcf90bd/files/da714f77-f37b-443d-ab46-557bbc62aa0a.jpg',
                 'category': 'Технологии'
             },
             {
@@ -145,7 +145,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 'description': 'Клиенты пишут в WhatsApp, звонят, заполняют формы на сайте. Как не потерять ни одного обращения и выстроить единую коммуникацию.',
                 'link': 'https://www.bitrix24.ru/',
                 'pubDate': 'Tue, 05 Nov 2025 10:00:00 +0300',
-                'image': 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
+                'image': 'https://cdn.poehali.dev/projects/698c952d-7b06-45e8-bd15-e431cfcf90bd/files/701cb55a-1d58-4857-877c-d5aeaf4845b0.jpg',
                 'category': 'Продажи'
             },
             {
@@ -153,7 +153,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 'description': 'Создавайте сложные автоматизации методом drag-and-drop. Роботы, триггеры, условия — всё в визуальном редакторе.',
                 'link': 'https://www.bitrix24.ru/',
                 'pubDate': 'Sun, 03 Nov 2025 14:30:00 +0300',
-                'image': 'https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=800&q=80',
+                'image': 'https://cdn.poehali.dev/projects/698c952d-7b06-45e8-bd15-e431cfcf90bd/files/20eb6abb-1205-4e51-aad3-4c427cbe5711.jpg',
                 'category': 'Автоматизация'
             },
             {
@@ -161,7 +161,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 'description': 'Как организовать эффективную работу команды, когда сотрудники в разных городах и часовых поясах.',
                 'link': 'https://www.bitrix24.ru/',
                 'pubDate': 'Fri, 01 Nov 2025 09:00:00 +0300',
-                'image': 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80',
+                'image': 'https://cdn.poehali.dev/projects/698c952d-7b06-45e8-bd15-e431cfcf90bd/files/177e933f-7015-4d14-afb7-e1b5199fe5fd.jpg',
                 'category': 'Управление'
             },
             {
@@ -169,7 +169,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 'description': 'Воронки, когорты, RFM-анализ — разбираем инструменты, которые помогают понять, что происходит с продажами.',
                 'link': 'https://www.bitrix24.ru/',
                 'pubDate': 'Wed, 29 Oct 2025 11:00:00 +0300',
-                'image': 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
+                'image': 'https://cdn.poehali.dev/projects/698c952d-7b06-45e8-bd15-e431cfcf90bd/files/ec87bded-4d82-4080-ba58-6b3f85a2a6f7.jpg',
                 'category': 'Аналитика'
             },
             {
@@ -177,7 +177,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 'description': 'GDPR, персональные данные, шифрование — что нужно знать о защите данных в облачных CRM-системах.',
                 'link': 'https://www.bitrix24.ru/',
                 'pubDate': 'Sat, 25 Oct 2025 15:00:00 +0300',
-                'image': 'https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&q=80',
+                'image': 'https://cdn.poehali.dev/projects/698c952d-7b06-45e8-bd15-e431cfcf90bd/files/1a1488dc-52e0-44b4-b2a0-61785acbcbba.jpg',
                 'category': 'Безопасность'
             },
             {
@@ -185,7 +185,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 'description': 'Как настроить двустороннюю синхронизацию товаров, заказов и контрагентов между CRM и учётной системой.',
                 'link': 'https://www.bitrix24.ru/',
                 'pubDate': 'Tue, 21 Oct 2025 13:00:00 +0300',
-                'image': 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80',
+                'image': 'https://cdn.poehali.dev/projects/698c952d-7b06-45e8-bd15-e431cfcf90bd/files/ec884faa-25b3-4aef-8efa-8d6d373020c3.jpg',
                 'category': 'Интеграции'
             }
         ]
