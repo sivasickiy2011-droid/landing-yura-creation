@@ -6,19 +6,11 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import Icon from "@/components/ui/icon";
+import IntegrationFormStep1 from "@/components/IntegrationFormStep1";
+import IntegrationFormStep2 from "@/components/IntegrationFormStep2";
+import IntegrationFormStep3 from "@/components/IntegrationFormStep3";
 
 interface IntegrationModalProps {
   open: boolean;
@@ -218,289 +210,30 @@ const IntegrationModal = ({
 
         <div className="space-y-6 py-4">
           {step === 1 && (
-            <div className="space-y-4">
-              <h3 className="font-semibold text-lg">Контактная информация</h3>
-
-              <div>
-                <Label htmlFor="companyName">
-                  Название компании <span className="text-red-500">*</span>
-                </Label>
-                <Input
-                  id="companyName"
-                  value={formData.companyName}
-                  onChange={(e) =>
-                    handleInputChange("companyName", e.target.value)
-                  }
-                  placeholder="ООО «Ваша компания»"
-                />
-              </div>
-
-              <div>
-                <Label htmlFor="contactPerson">
-                  Контактное лицо <span className="text-red-500">*</span>
-                </Label>
-                <Input
-                  id="contactPerson"
-                  value={formData.contactPerson}
-                  onChange={(e) =>
-                    handleInputChange("contactPerson", e.target.value)
-                  }
-                  placeholder="Иванов Иван Иванович"
-                />
-              </div>
-
-              <div>
-                <Label htmlFor="phone">Телефон</Label>
-                <Input
-                  id="phone"
-                  type="tel"
-                  value={formData.phone}
-                  onChange={(e) => handleInputChange("phone", e.target.value)}
-                  placeholder="+7 (900) 123-45-67"
-                />
-              </div>
-
-              <div>
-                <Label htmlFor="email">
-                  Email {!formData.telegram && <span className="text-red-500">*</span>}
-                </Label>
-                <Input
-                  id="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={(e) => handleInputChange("email", e.target.value)}
-                  placeholder="email@company.ru"
-                />
-              </div>
-
-              <div>
-                <Label htmlFor="telegram">
-                  Telegram {!formData.email && <span className="text-red-500">*</span>}
-                </Label>
-                <Input
-                  id="telegram"
-                  value={formData.telegram}
-                  onChange={(e) =>
-                    handleInputChange("telegram", e.target.value)
-                  }
-                  placeholder="@username"
-                />
-              </div>
-
-              <div>
-                <Label>Предпочтительный способ связи</Label>
-                <Select
-                  value={formData.contactMethod}
-                  onValueChange={(value) =>
-                    handleInputChange("contactMethod", value)
-                  }
-                >
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="telegram">Telegram</SelectItem>
-                    <SelectItem value="email">Email</SelectItem>
-                    <SelectItem value="phone">Телефон</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
+            <IntegrationFormStep1
+              formData={formData}
+              handleInputChange={handleInputChange}
+            />
           )}
 
           {step === 2 && (
-            <div className="space-y-4">
-              <h3 className="font-semibold text-lg">О вашей компании</h3>
-
-              <div>
-                <Label>
-                  Отрасль <span className="text-red-500">*</span>
-                </Label>
-                <Select
-                  value={formData.industry}
-                  onValueChange={(value) =>
-                    handleInputChange("industry", value)
-                  }
-                >
-                  <SelectTrigger>
-                    <SelectValue placeholder="Выберите отрасль" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {industries.map((industry) => (
-                      <SelectItem key={industry} value={industry}>
-                        {industry}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-
-              <div>
-                <Label>
-                  Размер компании <span className="text-red-500">*</span>
-                </Label>
-                <Select
-                  value={formData.companySize}
-                  onValueChange={(value) =>
-                    handleInputChange("companySize", value)
-                  }
-                >
-                  <SelectTrigger>
-                    <SelectValue placeholder="Количество сотрудников" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="1-10">1-10 сотрудников</SelectItem>
-                    <SelectItem value="11-50">11-50 сотрудников</SelectItem>
-                    <SelectItem value="51-100">51-100 сотрудников</SelectItem>
-                    <SelectItem value="101-500">101-500 сотрудников</SelectItem>
-                    <SelectItem value="500+">500+ сотрудников</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-
-              <div>
-                <Label htmlFor="currentCrm">Текущая CRM (если есть)</Label>
-                <Input
-                  id="currentCrm"
-                  value={formData.currentCrm}
-                  onChange={(e) =>
-                    handleInputChange("currentCrm", e.target.value)
-                  }
-                  placeholder="amoCRM, Битрикс24, Excel и т.д."
-                />
-              </div>
-
-              <div className="flex items-center space-x-2">
-                <Checkbox
-                  id="hasWebsite"
-                  checked={formData.hasWebsite}
-                  onCheckedChange={(checked) =>
-                    handleInputChange("hasWebsite", checked)
-                  }
-                />
-                <Label htmlFor="hasWebsite">У компании есть сайт</Label>
-              </div>
-
-              {formData.hasWebsite && (
-                <div>
-                  <Label htmlFor="website">Адрес сайта</Label>
-                  <Input
-                    id="website"
-                    value={formData.website}
-                    onChange={(e) =>
-                      handleInputChange("website", e.target.value)
-                    }
-                    placeholder="https://example.com"
-                  />
-                </div>
-              )}
-            </div>
+            <IntegrationFormStep2
+              formData={formData}
+              handleInputChange={handleInputChange}
+              industries={industries}
+            />
           )}
 
           {step === 3 && (
-            <div className="space-y-4">
-              <h3 className="font-semibold text-lg">Детали внедрения</h3>
-
-              <div>
-                <Label>Необходимые интеграции</Label>
-                <div className="grid grid-cols-2 gap-3 mt-2">
-                  {integrationOptions.map((integration) => (
-                    <div key={integration} className="flex items-center space-x-2">
-                      <Checkbox
-                        id={integration}
-                        checked={formData.integrationNeeds.includes(
-                          integration
-                        )}
-                        onCheckedChange={() =>
-                          handleIntegrationToggle(integration)
-                        }
-                      />
-                      <Label htmlFor={integration} className="font-normal">
-                        {integration}
-                      </Label>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <Label>Планируемый бюджет</Label>
-                <Select
-                  value={formData.budget}
-                  onValueChange={(value) => handleInputChange("budget", value)}
-                >
-                  <SelectTrigger>
-                    <SelectValue placeholder="Выберите диапазон" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="0-50000">До 50 000 ₽</SelectItem>
-                    <SelectItem value="50000-100000">50 000 - 100 000 ₽</SelectItem>
-                    <SelectItem value="100000-300000">
-                      100 000 - 300 000 ₽
-                    </SelectItem>
-                    <SelectItem value="300000+">Более 300 000 ₽</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-
-              <div>
-                <Label>Сроки внедрения</Label>
-                <Select
-                  value={formData.timeline}
-                  onValueChange={(value) =>
-                    handleInputChange("timeline", value)
-                  }
-                >
-                  <SelectTrigger>
-                    <SelectValue placeholder="Когда планируете начать?" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="urgent">Срочно (в течение недели)</SelectItem>
-                    <SelectItem value="month">В течение месяца</SelectItem>
-                    <SelectItem value="quarter">В течение квартала</SelectItem>
-                    <SelectItem value="planning">Планируем, сроки гибкие</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-
-              <div>
-                <Label htmlFor="mainGoals">Основные цели внедрения</Label>
-                <Textarea
-                  id="mainGoals"
-                  value={formData.mainGoals}
-                  onChange={(e) =>
-                    handleInputChange("mainGoals", e.target.value)
-                  }
-                  placeholder="Автоматизация продаж, учет клиентов..."
-                  rows={3}
-                />
-              </div>
-
-              <div>
-                <Label htmlFor="description">
-                  Дополнительная информация
-                </Label>
-                <Textarea
-                  id="description"
-                  value={formData.description}
-                  onChange={(e) =>
-                    handleInputChange("description", e.target.value)
-                  }
-                  placeholder="Расскажите подробнее о ваших задачах и пожеланиях..."
-                  rows={4}
-                />
-              </div>
-
-              <div className="bg-blue-50 p-4 rounded-lg">
-                <h4 className="font-semibold mb-2">Расчетная стоимость:</h4>
-                <p className="text-3xl font-bold text-blue-600">
-                  {calculatedCost.toLocaleString()} ₽
-                </p>
-                <p className="text-sm text-gray-600 mt-2">
-                  {users} пользователей • {integrations} интеграции
-                </p>
-              </div>
-            </div>
+            <IntegrationFormStep3
+              formData={formData}
+              handleInputChange={handleInputChange}
+              handleIntegrationToggle={handleIntegrationToggle}
+              integrationOptions={integrationOptions}
+              calculatedCost={calculatedCost}
+              users={users}
+              integrations={integrations}
+            />
           )}
         </div>
 
