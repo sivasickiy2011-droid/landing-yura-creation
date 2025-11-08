@@ -238,8 +238,9 @@ const NewsSection = () => {
     ? news 
     : news.filter(item => item.category === activeCategory);
 
-  const getCategoryIcon = (category?: string) => {
+  const getCategoryIcon = (category: string) => {
     switch (category) {
+      case "Все": return "Grid3x3";
       case "Технологии": return "Cpu";
       case "Продажи": return "TrendingUp";
       case "Автоматизация": return "Zap";
@@ -288,35 +289,42 @@ const NewsSection = () => {
           </p>
 
           <div
-            className={`flex flex-wrap justify-center gap-2 mb-8 sm:mb-12 ${
+            className={`flex justify-center mb-8 sm:mb-12 ${
               isVisible ? "animate-scroll-in-delay-1" : "opacity-0"
             }`}
           >
-            {categories.map((category) => {
-              const count = category === "Все" 
-                ? news.length 
-                : news.filter(item => item.category === category).length;
-              return (
-                <button
-                  key={category}
-                  onClick={() => setActiveCategory(category)}
-                  className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-full font-medium transition-all duration-300 flex items-center gap-1.5 sm:gap-2 text-sm sm:text-base ${
-                    activeCategory === category
-                      ? "bg-blue-600 text-white shadow-lg scale-105"
-                      : "bg-white text-gray-700 hover:bg-gray-100 border border-gray-200 hover:border-blue-300"
-                  }`}
-                >
-                  {category}
-                  <span className={`text-xs px-2 py-0.5 rounded-full ${
-                    activeCategory === category
-                      ? "bg-white/20"
-                      : "bg-gray-200"
-                  }`}>
-                    {count}
-                  </span>
-                </button>
-              );
-            })}
+            <div className="flex gap-2 overflow-x-auto pb-2 max-w-full hide-scrollbar">
+              {categories.map((category) => {
+                const count = category === "Все" 
+                  ? news.length 
+                  : news.filter(item => item.category === category).length;
+                const icon = getCategoryIcon(category);
+                return (
+                  <button
+                    key={category}
+                    onClick={() => setActiveCategory(category)}
+                    className={`flex-shrink-0 relative group ${
+                      activeCategory === category
+                        ? "bg-blue-600 text-white shadow-lg"
+                        : "bg-white text-gray-700 hover:bg-gray-100 border border-gray-200 hover:border-blue-300"
+                    } rounded-full transition-all duration-300`}
+                    title={category}
+                  >
+                    <div className="px-3 py-2 sm:px-4 sm:py-2.5 flex items-center gap-2">
+                      <Icon name={icon as any} size={18} className="sm:w-5 sm:h-5" />
+                      <span className="hidden sm:inline font-medium">{category}</span>
+                      <span className={`text-xs px-1.5 sm:px-2 py-0.5 rounded-full min-w-[20px] text-center ${
+                        activeCategory === category
+                          ? "bg-white/20"
+                          : "bg-gray-200"
+                      }`}>
+                        {count}
+                      </span>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
           {loading ? (
@@ -324,11 +332,11 @@ const NewsSection = () => {
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+            <div className="md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 flex md:flex-none overflow-x-auto pb-4 md:pb-0 -mx-4 px-4 sm:mx-0 sm:px-0 snap-x snap-mandatory hide-scrollbar">
               {filteredNews.slice(0, 7).map((item, index) => (
                 <Card
                   key={index}
-                  className={`group relative overflow-hidden hover:shadow-2xl transition-all duration-500 cursor-pointer border bg-white ${
+                  className={`group relative overflow-hidden hover:shadow-2xl transition-all duration-500 cursor-pointer border bg-white flex-shrink-0 w-[85vw] sm:w-[400px] md:w-auto md:flex-shrink snap-center ${
                     isVisible ? "animate-scroll-in-delay-2" : "opacity-0"
                   } ${index === 0 ? "md:col-span-2 md:row-span-2" : ""}`}
                   onClick={() => handleNewsClick(item)}
