@@ -1,10 +1,7 @@
-<?php
-if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
+<?
+if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 
-/**
- * Главная страница лендинга Битрикс24
- * Использует компоненты и редактируемые области
- */
+// Главная страница лендинга Битрикс24
 ?>
 
 <!-- Hero Section -->

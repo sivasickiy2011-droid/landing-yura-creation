@@ -1,11 +1,11 @@
-<?php
-if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
+<?
+if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 
 use Bitrix\Main\Page\Asset;
 
 $asset = Asset::getInstance();
-$asset->addCss(SITE_TEMPLATE_PATH . "/template_styles.css");
-$asset->addJs(SITE_TEMPLATE_PATH . "/script.js");
+$asset->addCss(SITE_TEMPLATE_PATH."/template_styles.css");
+$asset->addJs(SITE_TEMPLATE_PATH."/script.js");
 ?>
 <!DOCTYPE html>
 <html lang="ru">
