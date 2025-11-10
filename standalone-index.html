@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Битрикс24 - Платформа для управления вашим бизнесом</title>
+    <meta name="description" content="CRM, задачи, чаты, видеозвонки, склад, сайты и многое другое в одном месте. 15 миллионов компаний выбрали Битрикс24">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+/* Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  line-height: 1.6;
+  color: #1e293b;
+  background: #ffffff;
+  scroll-behavior: smooth;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+}
+
+.font-heading {
+  font-family: "Montserrat", sans-serif;
+}
+
+/* Animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes blob {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out forwards;
+}
+
+.animate-blob {
+  animation: blob 7s infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+    </style>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-lg transition-all duration-300">
+        <div class="max-w-[1460px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <circle cx="8" cy="8" r="3" fill="white"/>
+                            <circle cx="16" cy="8" r="3" fill="white"/>
+                            <circle cx="12" cy="16" r="3" fill="white"/>
+                            <path d="M8 8 L16 8 L12 16 Z" stroke="white" stroke-width="1.5" fill="none"/>
+                        </svg>
+                    </div>
+                    <span class="font-heading font-bold text-xl">Битрикс24</span>
+                </div>
+
+                <nav class="hidden md:flex items-center gap-8">
+                    <a href="#capabilities" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Возможности</a>
+                    <a href="#advantages" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Преимущества</a>
+                    <a href="#pricing" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Тарифы</a>
+                    <a href="#contact" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Контакты</a>
+                </nav>
+
+                <a href="#contact" class="hidden md:block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full font-semibold transition-all">
+                    СВЯЗАТЬСЯ
+                </a>
+
+                <button id="mobile-menu-btn" class="md:hidden p-2">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <nav class="flex flex-col p-4 space-y-2">
+                <a href="#capabilities" class="text-gray-700 hover:text-blue-600 font-medium py-2 transition-colors">Возможности</a>
+                <a href="#advantages" class="text-gray-700 hover:text-blue-600 font-medium py-2 transition-colors">Преимущества</a>
+                <a href="#pricing" class="text-gray-700 hover:text-blue-600 font-medium py-2 transition-colors">Тарифы</a>
+                <a href="#contact" class="text-gray-700 hover:text-blue-600 font-medium py-2 transition-colors">Контакты</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="relative pt-32 md:pt-48 pb-16 md:pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+            <div class="absolute inset-0 z-0 opacity-40">
+                <div class="absolute top-20 left-10 w-72 h-72 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
+                <div class="absolute top-40 right-10 w-72 h-72 bg-purple-400 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000"></div>
+                <div class="absolute -bottom-8 left-20 w-72 h-72 bg-pink-400 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000"></div>
+            </div>
+
+            <div class="max-w-[1460px] mx-auto relative z-10 w-full">
+                <div class="text-center mb-6 md:mb-8 animate-fade-in">
+                    <div class="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full font-semibold text-xs md:text-sm mb-4">
+                        <span>15 миллионов компаний выбрали Битрикс24</span>
+                    </div>
+                </div>
+
+                <h1 class="font-heading font-bold text-5xl md:text-7xl text-center mb-6 animate-fade-in text-gray-900">
+                    Платформа для управления<br>вашим бизнесом
+                </h1>
+
+                <p class="text-center text-gray-600 text-lg md:text-xl mb-12 max-w-3xl mx-auto animate-fade-in">
+                    CRM, задачи, чаты, видеозвонки, склад, сайты и многое другое в одном месте
+                </p>
+
+                <div class="flex flex-col md:flex-row items-center justify-center gap-4 mb-12 md:mb-16 animate-fade-in">
+                    <a href="#pricing" class="w-full md:w-auto bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-8 py-6 rounded-full font-bold text-lg shadow-xl hover:shadow-2xl transition-all inline-flex items-center justify-center gap-2">
+                        НАЧАТЬ РАБОТУ
+                    </a>
+                    <a href="#capabilities" class="w-full md:w-auto border-2 border-gray-900 text-gray-900 px-8 py-6 rounded-full font-bold text-lg hover:bg-gray-900 hover:text-white transition-all inline-block text-center">
+                        СМОТРЕТЬ ВОЗМОЖНОСТИ
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Capabilities Section -->
+        <section id="capabilities" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+            <div class="max-w-[1460px] mx-auto">
+                <h2 class="font-heading font-bold text-4xl md:text-5xl text-center mb-4">
+                    Возможности Битрикс24
+                </h2>
+                <p class="text-center text-gray-600 text-lg mb-12 max-w-2xl mx-auto">
+                    Всё необходимое для управления бизнесом в одной платформе
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-gradient-to-br from-blue-50 to-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-blue-100">
+                        <div class="w-14 h-14 bg-blue-600 rounded-2xl flex items-center justify-center mb-4">
+                            <svg width="28" height="28" fill="none" stroke="white" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 00-3-3.87m-4-12a4 4 0 010 7.75"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-900">CRM</h3>
+                        <p class="text-gray-600">Управление клиентами, сделками и продажами в одном месте</p>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-purple-50 to-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-purple-100">
+                        <div class="w-14 h-14 bg-purple-600 rounded-2xl flex items-center justify-center mb-4">
+                            <svg width="28" height="28" fill="none" stroke="white" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                                <path d="M9 3v18M3 9h18M3 15h18"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-900">Задачи и проекты</h3>
+                        <p class="text-gray-600">Планирование, постановка задач и контроль выполнения</p>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-green-50 to-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-green-100">
+                        <div class="w-14 h-14 bg-green-600 rounded-2xl flex items-center justify-center mb-4">
+                            <svg width="28" height="28" fill="none" stroke="white" stroke-width="2">
+                                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-900">Мессенджер</h3>
+                        <p class="text-gray-600">Корпоративный чат для быстрого общения команды</p>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-orange-50 to-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-orange-100">
+                        <div class="w-14 h-14 bg-orange-600 rounded-2xl flex items-center justify-center mb-4">
+                            <svg width="28" height="28" fill="none" stroke="white" stroke-width="2">
+                                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-900">Телефония</h3>
+                        <p class="text-gray-600">Виртуальная АТС и интеграция с популярными операторами</p>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-pink-50 to-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-pink-100">
+                        <div class="w-14 h-14 bg-pink-600 rounded-2xl flex items-center justify-center mb-4">
+                            <svg width="28" height="28" fill="none" stroke="white" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-900">Сайты и магазины</h3>
+                        <p class="text-gray-600">Создание сайтов и интернет-магазинов без программирования</p>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-teal-50 to-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-teal-100">
+                        <div class="w-14 h-14 bg-teal-600 rounded-2xl flex items-center justify-center mb-4">
+                            <svg width="28" height="28" fill="none" stroke="white" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                                <path d="M3 9h18"/>
+                                <path d="M9 21V9"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-900">Склад</h3>
+                        <p class="text-gray-600">Управление товарами, остатками и складским учётом</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Problems Section -->
+        <section class="py-20 px-4 sm:px-6 lg:px-8 bg-red-50">
+            <div class="max-w-[1460px] mx-auto">
+                <h2 class="font-heading font-bold text-4xl md:text-5xl text-center mb-4 text-gray-900">
+                    Проблемы без Битрикс24
+                </h2>
+                <p class="text-center text-gray-600 text-lg mb-12 max-w-2xl mx-auto">
+                    С какими сложностями сталкивается ваш бизнес?
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-2xl shadow-lg">
+                        <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mb-4">
+                            <svg width="24" height="24" fill="none" stroke="#dc2626" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <line x1="15" y1="9" x2="9" y2="15"/>
+                                <line x1="9" y1="9" x2="15" y2="15"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2 text-gray-900">Разрозненные инструменты</h3>
+                        <p class="text-gray-600 text-sm">Десятки программ для разных задач — сложно синхронизировать данные</p>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-2xl shadow-lg">
+                        <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mb-4">
+                            <svg width="24" height="24" fill="none" stroke="#dc2626" stroke-width="2">
+                                <path d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2 text-gray-900">Потеря клиентов</h3>
+                        <p class="text-gray-600 text-sm">Забытые заявки и упущенные сделки из-за плохой организации</p>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-2xl shadow-lg">
+                        <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mb-4">
+                            <svg width="24" height="24" fill="none" stroke="#dc2626" stroke-width="2">
+                                <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2 text-gray-900">Потеря времени</h3>
+                        <p class="text-gray-600 text-sm">Часы уходят на рутину вместо развития бизнеса</p>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-2xl shadow-lg">
+                        <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mb-4">
+                            <svg width="24" height="24" fill="none" stroke="#dc2626" stroke-width="2">
+                                <path d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2 text-gray-900">Плохая коммуникация</h3>
+                        <p class="text-gray-600 text-sm">Сотрудники используют разные мессенджеры, теряется информация</p>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-2xl shadow-lg">
+                        <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mb-4">
+                            <svg width="24" height="24" fill="none" stroke="#dc2626" stroke-width="2">
+                                <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2 text-gray-900">Нет контроля</h3>
+                        <p class="text-gray-600 text-sm">Непонятно, кто чем занят и на каком этапе проекты</p>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-2xl shadow-lg">
+                        <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mb-4">
+                            <svg width="24" height="24" fill="none" stroke="#dc2626" stroke-width="2">
+                                <path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2 text-gray-900">Высокие расходы</h3>
+                        <p class="text-gray-600 text-sm">Множество платных подписок на разные сервисы</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Solutions Section -->
+        <section class="py-20 px-4 sm:px-6 lg:px-8 bg-green-50">
+            <div class="max-w-[1460px] mx-auto">
+                <h2 class="font-heading font-bold text-4xl md:text-5xl text-center mb-4 text-gray-900">
+                    Решения с Битрикс24
+                </h2>
+                <p class="text-center text-gray-600 text-lg mb-12 max-w-2xl mx-auto">
+                    Как Битрикс24 решает эти проблемы
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-2xl shadow-lg">
+                        <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mb-4">
+                            <svg width="24" height="24" fill="none" stroke="#16a34a" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2 text-gray-900">Всё в одном месте</h3>
+                        <p class="text-gray-600 text-sm">Единая платформа для всех задач — данные синхронизированы автоматически</p>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-2xl shadow-lg">
+                        <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mb-4">
+                            <svg width="24" height="24" fill="none" stroke="#16a34a" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2 text-gray-900">Ни одного клиента не потеряете</h3>
+                        <p class="text-gray-600 text-sm">CRM с напоминаниями и автоматизацией — каждая заявка обработана</p>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-2xl shadow-lg">
+                        <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mb-4">
+                            <svg width="24" height="24" fill="none" stroke="#16a34a" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2 text-gray-900">Автоматизация рутины</h3>
+                        <p class="text-gray-600 text-sm">Роботы и бизнес-процессы освобождают время для важных задач</p>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-2xl shadow-lg">
+                        <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mb-4">
+                            <svg width="24" height="24" fill="none" stroke="#16a34a" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2 text-gray-900">Единое пространство общения</h3>
+                        <p class="text-gray-600 text-sm">Корпоративный чат, видеозвонки, лента — всё сохраняется</p>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-2xl shadow-lg">
+                        <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mb-4">
+                            <svg width="24" height="24" fill="none" stroke="#16a34a" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2 text-gray-900">Полный контроль</h3>
+                        <p class="text-gray-600 text-sm">Отчёты, дашборды, история действий — всё под контролем</p>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-2xl shadow-lg">
+                        <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mb-4">
+                            <svg width="24" height="24" fill="none" stroke="#16a34a" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2 text-gray-900">Экономия бюджета</h3>
+                        <p class="text-gray-600 text-sm">Одна подписка вместо десятка сервисов — выгода очевидна</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Advantages Section -->
+        <section id="advantages" class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-purple-50">
+            <div class="max-w-[1460px] mx-auto">
+                <h2 class="font-heading font-bold text-4xl md:text-5xl text-center mb-4">
+                    Почему выбирают Битрикс24
+                </h2>
+                <p class="text-center text-gray-600 text-lg mb-12 max-w-2xl mx-auto">
+                    Преимущества, которые оценили 15 миллионов компаний
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white p-8 rounded-2xl shadow-xl">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <svg width="24" height="24" fill="none" stroke="#2563eb" stroke-width="2">
+                                    <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                                    <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2 text-gray-900">Облако и коробка</h3>
+                                <p class="text-gray-600">Выберите облачную версию или установите на свой сервер</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-2xl shadow-xl">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <svg width="24" height="24" fill="none" stroke="#9333ea" stroke-width="2">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2 text-gray-900">Безопасность данных</h3>
+                                <p class="text-gray-600">Шифрование, резервное копирование, двухфакторная аутентификация</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-2xl shadow-xl">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <svg width="24" height="24" fill="none" stroke="#16a34a" stroke-width="2">
+                                    <rect x="2" y="3" width="20" height="14" rx="2"/>
+                                    <line x1="8" y1="21" x2="16" y2="21"/>
+                                    <line x1="12" y1="17" x2="12" y2="21"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2 text-gray-900">Работает везде</h3>
+                                <p class="text-gray-600">Браузер, мобильное приложение, десктоп — работайте откуда угодно</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-2xl shadow-xl">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <svg width="24" height="24" fill="none" stroke="#ea580c" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M12 6v6l4 2"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2 text-gray-900">Быстрый старт</h3>
+                                <p class="text-gray-600">Начните работу за 5 минут без установки и настройки</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-2xl shadow-xl">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-pink-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <svg width="24" height="24" fill="none" stroke="#db2777" stroke-width="2">
+                                    <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2 text-gray-900">Для любой команды</h3>
+                                <p class="text-gray-600">От 1 до 10 000+ пользователей — масштабируйтесь без ограничений</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-2xl shadow-xl">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-teal-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <svg width="24" height="24" fill="none" stroke="#0d9488" stroke-width="2">
+                                    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                                    <polyline points="14 2 14 8 20 8"/>
+                                    <line x1="16" y1="13" x2="8" y2="13"/>
+                                    <line x1="16" y1="17" x2="8" y2="17"/>
+                                    <polyline points="10 9 9 9 8 9"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2 text-gray-900">Интеграции</h3>
+                                <p class="text-gray-600">1С, WhatsApp, Telegram, email и сотни других сервисов</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section id="pricing" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+            <div class="max-w-[1460px] mx-auto">
+                <h2 class="font-heading font-bold text-4xl md:text-5xl text-center mb-4">
+                    Тарифы
+                </h2>
+                <p class="text-center text-gray-600 text-lg mb-12 max-w-2xl mx-auto">
+                    Выберите подходящий тариф для вашего бизнеса
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="bg-white border-2 border-gray-200 rounded-2xl p-8 hover:border-blue-500 transition-all hover:shadow-2xl">
+                        <h3 class="text-2xl font-bold mb-2">Бесплатный</h3>
+                        <div class="mb-6">
+                            <span class="text-4xl font-bold">0 ₽</span>
+                            <span class="text-gray-600">/месяц</span>
+                        </div>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-start gap-2">
+                                <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                                <span class="text-sm text-gray-600">До 5 пользователей</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                                <span class="text-sm text-gray-600">5 ГБ на диске</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                                <span class="text-sm text-gray-600">CRM и задачи</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                                <span class="text-sm text-gray-600">Чаты и видеозвонки</span>
+                            </li>
+                        </ul>
+                        <a href="#contact" class="block w-full bg-gray-100 hover:bg-gray-200 text-gray-900 px-6 py-3 rounded-full font-semibold text-center transition-all">
+                            Попробовать
+                        </a>
+                    </div>
+
+                    <div class="bg-white border-2 border-gray-200 rounded-2xl p-8 hover:border-blue-500 transition-all hover:shadow-2xl">
+                        <h3 class="text-2xl font-bold mb-2">Базовый</h3>
+                        <div class="mb-6">
+                            <span class="text-4xl font-bold">1 990 ₽</span>
+                            <span class="text-gray-600">/месяц</span>
+                        </div>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-start gap-2">
+                                <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                                <span class="text-sm text-gray-600">До 50 пользователей</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                                <span class="text-sm text-gray-600">100 ГБ на диске</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                                <span class="text-sm text-gray-600">Все из бесплатного</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                                <span class="text-sm text-gray-600">Онлайн-документы</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                                <span class="text-sm text-gray-600">Интеграция с email</span>
+                            </li>
+                        </ul>
+                        <a href="#contact" class="block w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full font-semibold text-center transition-all">
+                            Выбрать
+                        </a>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-blue-600 to-purple-600 border-2 border-blue-600 rounded-2xl p-8 text-white relative overflow-hidden hover:shadow-2xl transition-all transform hover:scale-105">
+                        <div class="absolute top-4 right-4 bg-white text-blue-600 px-3 py-1 rounded-full text-xs font-bold">
+                            Популярный
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2">Стандартный</h3>
+                        <div class="mb-6">
+                            <span class="text-4xl font-bold">3 990 ₽</span>
+                            <span class="text-blue-100">/месяц</span>
+                        </div>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-start gap-2">
+                                <svg class="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                                <span class="text-sm">До 100 пользователей</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <svg class="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                                <span class="text-sm">1 ТБ на диске</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <svg class="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                                <span class="text-sm">Все из базового</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <svg class="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                                <span class="text-sm">Автоматизация продаж</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <svg class="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                                <span class="text-sm">Склад и интернет-магазин</span>
+                            </li>
+                        </ul>
+                        <a href="#contact" class="block w-full bg-white text-blue-600 px-6 py-3 rounded-full font-semibold text-center hover:bg-blue-50 transition-all">
+                            Выбрать
+                        </a>
+                    </div>
+
+                    <div class="bg-white border-2 border-gray-200 rounded-2xl p-8 hover:border-blue-500 transition-all hover:shadow-2xl">
+                        <h3 class="text-2xl font-bold mb-2">Профессиональный</h3>
+                        <div class="mb-6">
+                            <span class="text-4xl font-bold">7 990 ₽</span>
+                            <span class="text-gray-600">/месяц</span>
+                        </div>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-start gap-2">
+                                <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                                <span class="text-sm text-gray-600">Неограниченно</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                                <span class="text-sm text-gray-600">3 ТБ на диске</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                                <span class="text-sm text-gray-600">Все из стандартного</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                                <span class="text-sm text-gray-600">HR и рабочие группы</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                                <span class="text-sm text-gray-600">Маркетинг и аналитика</span>
+                            </li>
+                        </ul>
+                        <a href="#contact" class="block w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full font-semibold text-center transition-all">
+                            Выбрать
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-600 to-purple-600">
+            <div class="max-w-[1460px] mx-auto">
+                <div class="bg-white rounded-3xl p-8 md:p-12 shadow-2xl">
+                    <h2 class="font-heading font-bold text-4xl md:text-5xl text-center mb-4 text-gray-900">
+                        Остались вопросы?
+                    </h2>
+                    <p class="text-center text-gray-600 text-lg mb-12 max-w-2xl mx-auto">
+                        Оставьте заявку, и наш специалист свяжется с вами в ближайшее время
+                    </p>
+
+                    <form class="max-w-2xl mx-auto space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Имя</label>
+                                <input type="text" placeholder="Ваше имя" class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Телефон</label>
+                                <input type="tel" placeholder="+7 (___) ___-__-__" class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none transition-colors">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Email</label>
+                            <input type="email" placeholder="your@email.com" class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Сообщение</label>
+                            <textarea rows="4" placeholder="Расскажите о вашем проекте..." class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none transition-colors resize-none"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-xl hover:shadow-2xl transition-all">
+                            ОТПРАВИТЬ ЗАЯВКУ
+                        </button>
+                        <p class="text-center text-sm text-gray-500">
+                            Нажимая кнопку, вы соглашаетесь с <a href="#" class="text-blue-600 hover:underline">политикой конфиденциальности</a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-[1460px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                <circle cx="8" cy="8" r="3" fill="white"/>
+                                <circle cx="16" cy="8" r="3" fill="white"/>
+                                <circle cx="12" cy="16" r="3" fill="white"/>
+                            </svg>
+                        </div>
+                        <span class="font-bold text-lg">Битрикс24</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">
+                        Корпоративный портал и CRM для автоматизации вашего бизнеса
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4">Продукт</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#capabilities" class="text-gray-400 hover:text-white text-sm transition-colors">Возможности</a></li>
+                        <li><a href="#advantages" class="text-gray-400 hover:text-white text-sm transition-colors">Преимущества</a></li>
+                        <li><a href="#pricing" class="text-gray-400 hover:text-white text-sm transition-colors">Тарифы</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white text-sm transition-colors">Контакты</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4">Компания</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">О нас</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Партнёры</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Карьера</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Блог</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4">Поддержка</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Документация</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Обучение</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Техподдержка</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-400 text-sm">
+                    © 2024 Битрикс24. Все права защищены.
+                </p>
+                <div class="flex gap-6">
+                    <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">
+                        Политика конфиденциальности
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">
+                        Условия использования
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scroll-to-top" class="fixed bottom-8 right-8 z-50 bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-2xl transition-all duration-300 opacity-0 translate-y-16 pointer-events-none" aria-label="Прокрутить наверх">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 19V5M5 12l7-7 7 7"/>
+        </svg>
+    </button>
+
+    <script>
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    }
+
+    // Scroll to top button
+    const scrollBtn = document.getElementById('scroll-to-top');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            scrollBtn.classList.remove('opacity-0', 'translate-y-16', 'pointer-events-none');
+        } else {
+            scrollBtn.classList.add('opacity-0', 'translate-y-16', 'pointer-events-none');
+        }
+    });
+    scrollBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+    </script>
+</body>
+</html>
