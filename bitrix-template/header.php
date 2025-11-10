@@ -14,6 +14,7 @@ $asset->addJs(SITE_TEMPLATE_PATH."/script.js");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php $APPLICATION->ShowHead(); ?>
     <title><?php $APPLICATION->ShowTitle(); ?></title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
