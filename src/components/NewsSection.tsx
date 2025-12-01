@@ -26,7 +26,7 @@ const NewsSection = () => {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const response = await fetch('https://functions.poehali.dev/6b8ae2f1-ce10-4bd0-8d36-9d1b307284de', {
+        const response = await fetch('https://function.centerai.tech/api/rss-news', {
           cache: 'no-store'
         });
         const data = await response.json();

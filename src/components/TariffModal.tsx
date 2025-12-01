@@ -44,7 +44,7 @@ const TariffModal = ({ isOpen, onClose, tariffName, billingPeriod = 'month' }: T
       };
 
       // Send to Telegram
-      const telegramResponse = await fetch('https://functions.poehali.dev/95830b61-9b82-45e6-b96c-bcb5ef3bbf7b', {
+      const telegramResponse = await fetch('https://function.centerai.tech/api/telegram-notify', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -53,7 +53,7 @@ const TariffModal = ({ isOpen, onClose, tariffName, billingPeriod = 'month' }: T
       });
 
       // Send to Bitrix24
-      const bitrixResponse = await fetch('https://functions.poehali.dev/fb7f05cf-e9c2-467c-af4d-e76a9081a605', {
+      const bitrixResponse = await fetch('https://function.centerai.tech/api/bitrix-landing/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

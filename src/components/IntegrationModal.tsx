@@ -134,7 +134,7 @@ const IntegrationModal = ({
     setLoading(true);
 
     try {
-      const response = await fetch("https://functions.poehali.dev/c7e1adaa-c977-4f49-92b4-73e01ac10dbb", {
+      const response = await fetch("https://function.centerai.tech/api/integration-request", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

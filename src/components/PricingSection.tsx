@@ -28,7 +28,7 @@ const PricingSection = () => {
   useEffect(() => {
     const fetchPrices = async () => {
       try {
-        const response = await fetch('https://functions.poehali.dev/3c9a518f-7dbb-40b0-9319-25d60020adde', {
+        const response = await fetch('https://function.centerai.tech/api/bitrix24-prices', {
           cache: 'no-store'
         });
         const data = await response.json();
